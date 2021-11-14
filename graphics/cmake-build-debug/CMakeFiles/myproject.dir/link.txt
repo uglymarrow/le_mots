@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/myproject.dir/main.cpp.o -o myproject  -Wl,-rpath,/home/ksenia/technopark/le_mots/SFML/lib: /home/ksenia/technopark/le_mots/SFML/lib/libsfml-graphics.so.2.5.1 /home/ksenia/technopark/le_mots/SFML/lib/libsfml-window.so.2.5.1 /home/ksenia/technopark/le_mots/SFML/lib/libsfml-system.so.2.5.1 
