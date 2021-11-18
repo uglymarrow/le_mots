@@ -7,6 +7,12 @@ class PrepGameWidget : public BaseWidget
 public:
     PrepGameWidget();
     ~PrepGameWidget();
+
+public slots:
+    void create_room_clicked();
+    void random_room_clicked();
+    void create_room_list();
+
 private:
     QLabel *header;
 
