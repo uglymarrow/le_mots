@@ -1,5 +1,0 @@
-/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/ksenia/technopark/le_mots/graphics
--- Found SFML 2.5.1 in /home/ksenia/technopark/le_mots/SFML/lib/cmake/SFML
--- Configuring done
--- Generating done
--- Build files have been written to: /home/ksenia/technopark/le_mots/graphics/cmake-build-debug

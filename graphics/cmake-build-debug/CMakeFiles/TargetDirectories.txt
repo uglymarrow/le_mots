@@ -1,7 +1,0 @@
-/home/ksenia/technopark/le_mots/graphics/cmake-build-debug/CMakeFiles/install/strip.dir
-/home/ksenia/technopark/le_mots/graphics/cmake-build-debug/CMakeFiles/install/local.dir
-/home/ksenia/technopark/le_mots/graphics/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/ksenia/technopark/le_mots/graphics/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/ksenia/technopark/le_mots/graphics/cmake-build-debug/CMakeFiles/install.dir
-/home/ksenia/technopark/le_mots/graphics/cmake-build-debug/CMakeFiles/myproject.dir
-/home/ksenia/technopark/le_mots/graphics/cmake-build-debug/CMakeFiles/list_install_components.dir
