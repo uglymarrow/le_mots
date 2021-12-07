@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -fprofile-arcs -ftest-coverage -pthread -std=c++11 -O0 -g -O0 -Wall -Wno-unused -Werror -Wpedantic -fprofile-arcs -ftest-coverage  -shared -Wl,-soname,libMyStaticLib.so -o libMyStaticLib.so CMakeFiles/MyStaticLib.dir/server/asio-server/server.cpp.o 

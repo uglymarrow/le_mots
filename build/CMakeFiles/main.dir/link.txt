@@ -1,0 +1,1 @@
+/usr/bin/c++  -fprofile-arcs -ftest-coverage -pthread -std=c++11 -O0 -g -O0 -Wall -Wno-unused -Werror -Wpedantic -fprofile-arcs -ftest-coverage   CMakeFiles/main.dir/server/asio-server/server.cpp.o  -o main 

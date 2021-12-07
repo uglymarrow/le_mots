@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.10)
+project(lemots)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "-g -O0 -Wall -Wno-unused -Werror -Wpedantic -fprofile-arcs -ftest-coverage")
+set(CMAKE_C_FLAGS "-g -O0 -Wall -Wno-unused -Werror -Wpedantic -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -pthread -std=c++11 -O0 ${CMAKE_CXX_FLAGS}")
+
+add_library(AsioServer STATIC )
+target_include_directories(AsioServer PUBLIC ${PROJECT_SOURCE_DIR}/static_lib)
+
+add_executable(main main.cpp)
+
+target_link_libraries(main PRIVATE AsioServer)
+target_link_libraries(main PRIVATE Command)
