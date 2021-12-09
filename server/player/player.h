@@ -1,5 +1,8 @@
+#pragma once 
 #include <iostream>
-#include <memory>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
 struct Score
@@ -14,36 +17,54 @@ struct Stat{
   int games = 0;//для статистики пользователя
 };
 
-struct Connect_player{
-  shared_ptr<Socket> socket;
-  Player player;
-}
-
 class Player { 
-  string nickname;
-  string login;
-  string password;
-  Stat player_stat;
-  int user_id;//можно использовать сокет вместо id
-  Score score_in_game;
-  string avatar;
-  bool ready = false;//проверка готовности
-
-public:
-  Player(string nickname_, string login_, string pass, int id, string ava)
-      : nickname(nickname_), login(login_), password(pass), user_id(id),
-        avatar(ava){};//создание нового пользователя, отправка его полей на сервер для записи в бд
-
-  ~Player();//разорвать соединение, завершить сессию, записать новую статистику в бд 
-
-  int is_exist();//проверка в бд на существование игрока, вернем -1, если такого игрока нет
-
-  void player_login();//вход пользователя в игру, создание сокета для этого игрока, создание игрока на сервере с полученными из бд данными 
-
-  Stat stat();//вывод статистики пользователя
-
-  void join_room(int room_id);//подключение к комнате на сервере, добавление пользователя в список пользователей комнаты
-
-  bool is_ready();//проверка готовности пользователя
   
+public:
+
+  Player(){};
+  
+  Player(std::string login_, std::string pass, int id_, Stat cur_stat)
+      : login(login_), password(pass), id(id_), 
+        player_stat(cur_stat),score_in_game(){};//создание нового пользователя, отправка его полей на сервер для записи в бд
+
+  Player(const Player& player):login(player.login), password(player.password),
+      id(player.id), player_stat(player.player_stat), 
+      score_in_game(player.score_in_game) {};
+
+  Player& operator=(const Player &s); 
+
+  ~Player(){};//разорвать соединение, завершить сессию, записать новую статистику в бд 
+
+  Stat get_stat() const;//вывод статистики пользователя
+
+  bool is_ready() const;//проверка готовности пользователя
+
+  void refresh_score(const Score& score);
+
+  void get_ready();
+
+  int get_id() const; 
+
+  Score get_score();
+
+  std::string get_login() const;
+
+  std::string get_pass() const;
+
+private:
+
+  std::string login;
+
+  std::string password;
+
+  Stat player_stat;
+
+  int id;
+
+  Score score_in_game;
+
+  bool ready = true;//проверка готовности
+
+  // Room* main_room = nullptr;
 };
+
