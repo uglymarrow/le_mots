@@ -14,10 +14,10 @@ bool Command::login(std::string json, std::string& buf) {
     
     value jv;
     value json_data;
-    // error_code ec;
+    error_code ec;
 
     try {
-        json_data = parse(json);
+        json_data = parse(json, ec);
     } catch(std::bad_alloc const& e) {
         jv = {
             { "error", 1 },
@@ -29,19 +29,21 @@ bool Command::login(std::string json, std::string& buf) {
         return false;
     }
 
-    // if (ec) {
-    //     jv = {
-    //         { "error", 2 },
-    //         { "msg", "Parsing failed" }
-    //     };
+    if (ec) {
+        jv = {
+            { "error", 2 },
+            { "msg", "Parsing failed" }
+        };
 
-    //     buf = serialize(jv);
+        buf = serialize(jv);
 
-    //     return false;
-    // }
+        return false;
+    }
+
     object const& data = json_data.as_object();
     jv = {
-        { "user", boost::json::value_to<std::string>(data.at("user")) },
+        { "type", true },
+        { "user", value_to<std::string>(data.at("user")) },
         { "msg", "Wrong password or login" }
     };
 

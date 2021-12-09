@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <memory>
 using namespace std;
 
@@ -50,3 +50,4 @@ public:
   void send_word(const string& msg);//отправка введенного слова на сервер, бросим исключение при неудаче, если слово правильное, то изменим счет пользователя на сервере
   
 };
+*/
