@@ -1,0 +1,4 @@
+#ifndef IWIRINGVIEW_H
+#define IWIRINGVIEW_H
+
+#endif // IWIRINGVIEW_H
