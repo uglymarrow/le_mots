@@ -1,2 +1,4 @@
 .vscode/
 boost/
+server/build/
+client/build/

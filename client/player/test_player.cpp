@@ -1,54 +1,52 @@
-#include "player.h"
-#include "gtest/gtest.h"
+#include <iostream>
+#include <memory>
+using namespace std;
 
-//пользователь не существует
-TEST(PLAYER_TEST, test_is_exist1) {
-  Player test1("alexey", "alex123", "password", 2, "aw");
-  EXPECT_ANY_THROW(test1.is_exist());
-}
-//пользователь существует
-TEST(PLAYER_TEST, test_is_exist2) {
-  Player test1("dmitriy", "dim123", "password", 2, "aw");
-  EXPECT_NO_THROW(test1.is_exist());
-}
-//вход пользователя неудачен
-TEST(PLAYER_TEST, test_player_login1) {
-  Player test1("alexey", "alex123", "password", 2, "aw");
-  EXPECT_ANY_THROW(test1.player_login());
-}
-//вход пользователя удачен
-TEST(PLAYER_TEST, test_player_login2) {
-  Player test1("dmitriy", "dim123", "password", 2, "aw");
-  EXPECT_NO_THROW(test1.player_login());
-}
-//вывод статистики
-TEST(PLAYER_TEST, test_stat) {
-  Player test1("dmitriy", "dim123", "password", 2, "aw");
-  Stat test_stat1;
-  EXPECT_EQ(test1.stat(), test_stat1);
-}
-//присоединение к комнате успешно
-TEST(PLAYER_TEST, test_join_room1) {
-  Player test1("dmitriy", "dim123", "password", 2, "aw");
-  EXPECT_NO_THROW(test1.join_room(1));
-}
-//присоединение к комнате неуспешно
-TEST(PLAYER_TEST, test_join_room2) {
-  Player test1("dmitriy", "dim123", "password", 2, "aw");
-  EXPECT_ANY_THROW(test1.join_room(10000));
-}
-//отправка неслова
-TEST(PLAYER_TEST, test_send_word1) {
-  Player test1("dmitriy", "dim123", "password", 2, "aw");
-  EXPECT_ANY_THROW(test1.send_word("123"));
-}
-//отправка слова, ответ не получен
-TEST(PLAYER_TEST, test_send_word2) {
-  Player test1("dmitriy", "dim123", "password", 2, "aw");
-  EXPECT_ANY_THROW(test1.send_word("кошка"));
-}
+struct Score
+{
+    int current_score = 0;
+    int sum_of_letters = 0;
+};
 
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+struct Stat{
+  int win_game = 0;//для статистики пользователя
+  int lose_game = 0;//для статистики пользователя
+  int games = 0;//для статистики пользователя
+};
+
+//реализация этой структуры должна быть на сервере (я надеюсь)
+// struct Connect_player{
+//   shared_ptr<Socket> socket;//новый сокет для каждого игрока, чтобы не было задрежки на обработку сообщений
+//   Player player;
+// }
+
+class Player { 
+  string nickname;
+  string login;
+  string password;
+  Stat player_stat;
+  int user_id;//можно использовать сокет вместо id
+  Score score_in_game;
+  string avatar;
+  bool ready = false;//проверка готовности
+
+public:
+  Player(string nickname_, string login_, string pass, int id, string ava)
+      : nickname(nickname_), login(login_), password(pass), user_id(id),
+        avatar(ava){};//создание нового пользователя
+
+  ~Player();//разорвать соединение, завершить сессию, записать новую статистику в бд 
+
+  void is_exist();//отправка сообщения с просьбой посмотреть сервер на наличие в бд, бросим исключение при неудаче
+
+  void player_login();//отправка сообщения с полями пользователя на создание нового сокета и создание структуры для этого пользователя на сервере, вернем -1, при неудаче
+
+  Stat stat();//отправка сообщения серверу с просьбой получения статистики этого пользователя из бд
+
+  void join_room(int room_id);//отправка запроса на сервер для подключения к комнате, бросим исключение при неудаче, если не удалось создать комнату
+
+  void ready_(); //изменение готовности пользователя, отправка сообщения на сервер об изменении готовности, бросим исключение при неудаче
+
+  void send_word(const string& msg);//отправка введенного слова на сервер, бросим исключение при неудаче, если слово правильное, то изменим счет пользователя на сервере
+  
+};

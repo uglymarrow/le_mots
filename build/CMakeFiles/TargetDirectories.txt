@@ -1,3 +1,0 @@
-/home/pi/le_mots/build/CMakeFiles/rebuild_cache.dir
-/home/pi/le_mots/build/CMakeFiles/main.dir
-/home/pi/le_mots/build/CMakeFiles/edit_cache.dir

@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/server.dir/server/command/command.cpp.o CMakeFiles/server.dir/server/asio-server/server.cpp.o  -o server  -lpthread 
