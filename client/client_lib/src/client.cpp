@@ -43,6 +43,8 @@ int Client::login(const std::string& user, const std::string& password) {
 
     std::string json = send(std::string(serialize(jv)));
 
+    std::cout << json << std::endl;
+
     error_code ec;
     value json_data;
 

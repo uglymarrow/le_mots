@@ -38,8 +38,9 @@ void Connection::handle_login(const boost::system::error_code& error, size_t byt
 
 void Connection::handle_read(const boost::system::error_code& error, size_t bytes_transferred) {
     if (!error) {
-        //buf = contr.do(std::string(data_));
-        //boost::asio::async_write(socket_, boost::asio::buffer(buf, buf.size()), boost::bind(&Connection::handle_write, this, boost::asio::placeholders::error));
+        if (!contr.login(std::string(data_), buf)) {
+            boost::asio::async_write(socket_, boost::asio::buffer(buf, buf.size()), boost::bind(&Connection::handle_write, this, boost::asio::placeholders::error));
+        }
     } else delete this;
 }
 
