@@ -24,11 +24,11 @@ public:
   Player(){};
   
   Player(std::string login_, std::string pass, int id_, Stat cur_stat)
-      : login(login_), password(pass), id(id_), 
-        player_stat(cur_stat),score_in_game(){};//создание нового пользователя, отправка его полей на сервер для записи в бд
+      : login(login_),password(pass), player_stat(cur_stat),  id(id_), 
+        score_in_game(){};//создание нового пользователя, отправка его полей на сервер для записи в бд
 
   Player(const Player& player):login(player.login), password(player.password),
-      id(player.id), player_stat(player.player_stat), 
+      player_stat(player.player_stat), id(player.id),
       score_in_game(player.score_in_game) {};
 
   Player& operator=(const Player &s); 

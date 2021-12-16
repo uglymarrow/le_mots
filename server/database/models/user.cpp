@@ -109,9 +109,7 @@ bool User::update_field(const std::string& login, const std::string &field_name,
         return false;
     }
 
-    sql::Statement *stmt; 
     sql::PreparedStatement *pstmt;
-    sql::ResultSet *res;
 
     if (!this->is_exist(login))
     {

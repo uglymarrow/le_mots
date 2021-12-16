@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "player.h"
+#include "../player/player.h"
 #include <map>
 using namespace std;
 
@@ -19,8 +19,8 @@ public:
     : name_of_room(name_), room_id(id), creator(first)
     {};
 
-    Room(const std::string& name_, const std::string& pass, int id,  const Player& first) 
-    : name_of_room(name_), password(pass), room_id(id), creator(first)
+    Room(const std::string& name_, const std::string& pass, const int& id,  const Player& first) 
+    : name_of_room(name_), room_id(id), password(pass),  creator(first)
     {};
 
     Room(const Room &s):name_of_room(s.name_of_room), room_id(s.room_id), password(s.password),
@@ -28,7 +28,7 @@ public:
 
     Room& operator=(const Room &s); 
 
-    Room* get_room() const {};
+    Room* get_room() {return this;};
 
     ~Room(){}; //распускаение комнаты, когда current_number == 0
 

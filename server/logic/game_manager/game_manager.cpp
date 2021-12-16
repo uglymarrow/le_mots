@@ -9,39 +9,12 @@ bool operator==(const std::pair<const int, Player>& rhs, const Player& lhs ){
 bool operator==(const std::pair<const int, Room>& rhs, const Room& lhs ){
     return (std::get<1>(rhs).get_name() == lhs.get_name()
     &&
-    std::get<1>(rhs).get_room() == lhs.get_room());
+    std::get<1>(rhs).get_id() == lhs.get_id());
 }
 
 void Game_manager::run_game()
 {
-  //1 - add player
-  //2 - create room
-  //3 - join room
-  //4 - check word
-    // int command = 0;
-    // string login, pass;
-    // Player player;
-    // while(true)
-    // {
-    //   cin >> command;
-      
-    //   switch(command)
-    //   {
-    //     case 1:
-    //       std::cout << "Please, log in: ";
-    //       std::cin >> login >> pass;
-    //       player = mod_user.login(login, pass);
-    //       // if (Game_manager::get_instance()->add_new_player(player)){
 
-    //       // }
-    //       break;
-    //     case 2:
-    //       break;
-    //     default:
-    //       cout<<"Error, bad input, quitting\n";
-    //       break;
-    //   }
-    // }
 }
 
 Game_manager* Game_manager::instance(nullptr);
@@ -163,6 +136,8 @@ bool Game_manager::check_answer(const int& id, const std::string& word)
       players[id].refresh_score(old_score);
       return true;
     }
+    else
+      return false;
   }
   else 
     return false;
