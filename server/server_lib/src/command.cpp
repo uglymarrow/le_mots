@@ -5,80 +5,82 @@
 #include <boost/json.hpp>
 #include <boost/json/src.hpp>
 
+#include <map>
+
+//#include "Gamemanager.h"
+
 using namespace boost::json;
 
-Command::Command() {}
-
 bool Command::login(std::string json, std::string& buf) {
-    //Database* test = Database::getInstance();
-    
     value jv;
+
+    try {
+        object const& data = safly_read(json);
+    
+        try {
+            //user = game->login(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
+        } catch (std::exception& inv) {
+            jv = {
+                { "type", 0 },
+                { "info", {
+                    { "msg", "Wrong password or login" }
+                } }
+            };
+
+            buf = serialize(jv);
+
+            return false;
+        }
+
+        jv = {
+            { "type", 1 },
+            { "info", {
+                { "user", value_to<std::string>(data.at("info").at("user")) },
+            } }
+        };
+        buf = serialize(jv);
+
+        return true;
+    } catch (std::exception& inv) {
+        return false;
+    }
+}
+
+void Command::controller(std::string json, std::string& buf) {
+    value jv;
+
+    try {
+        object const& data = safly_read(json);
+    
+        if(value_to<std::string>(data.at("type")) == std::string("rooms")) {
+            all_rooms(data, buf);
+        }
+    } catch (std::exception& inv) {
+        
+    }
+}
+
+void Command::all_rooms(object const& data, std::string& buf) {
+    buf = value_to<std::string>(data.at("type")) + std::string("anume");
+}
+
+object const Command::safly_read(std::string& json) {
     value json_data;
     error_code ec;
 
     try {
         json_data = parse(json, ec);
     } catch(std::bad_alloc const& e) {
-        jv = {
-            { "type", 0 },
-            { "info", {
-                { "msg", "Parsing json failed, soobshite razrabotchikam" }
-            } }
-        };
-
-        buf = serialize(jv) + std::string("\r\n");
-
-        return false;
+        throw std::invalid_argument("Failed parsing");
     }
 
     if (ec) {
-        jv = {
-            { "type", 0 },
-            { "info", {
-                { "msg", "Parsing json failed, soobshite razrabotchikam" }
-            } }
-        };
-
-        buf = serialize(jv) + std::string("\r\n");
-
-        return false;
+        throw std::invalid_argument("Failed parsing");
     }
 
-    object const& data = json_data.as_object();
-    jv = {
-        { "type", 1 },
-        { "info", {
-            { "user", value_to<std::string>(data.at("info").at("user")) },
-            { "msg", "Wrong password or login" }
-        } }
-    };
+    return json_data.as_object();
+}
 
-    buf = serialize(jv) + std::string("\r\n");
-
-    return true;
-
-    /*
-    
-    try {
-        user = test->login(boost::json::value_to<std::string>(data.at("user")), boost::json::value_to<std::string>(data.at("password")));
-    } catch (std::exception& inv) {
-        jv = {
-            { "type", 0 },
-            { "info", {
-                { "msg", "Wrong password or login" }
-            } }
-        };
-
-        buf = serialize(jv);
-
-        return false;
-    }
-    
-    jv = {
-        { "nickname", user.get_nickname() },
-        { "auth", true }
-    };
-    buf = serialize(jv);
-
-    return true;*/
+Command::Command() {
+    //Gamemanager* game = Gamemanager::get_instance();
 }
