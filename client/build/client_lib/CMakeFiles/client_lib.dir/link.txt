@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -pthread -shared -Wl,-soname,libclient_lib.so -o libclient_lib.so CMakeFiles/client_lib.dir/src/client.cpp.o CMakeFiles/client_lib.dir/src/clientmanager.cpp.o CMakeFiles/client_lib.dir/src/command.cpp.o CMakeFiles/client_lib.dir/src/profile.cpp.o 

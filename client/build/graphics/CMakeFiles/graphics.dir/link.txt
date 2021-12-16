@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgraphics.a CMakeFiles/graphics.dir/graphics_autogen/mocs_compilation.cpp.o CMakeFiles/graphics.dir/loginform.cpp.o CMakeFiles/graphics.dir/main.cpp.o CMakeFiles/graphics.dir/menuform.cpp.o CMakeFiles/graphics.dir/player.cpp.o CMakeFiles/graphics.dir/playerpresenter.cpp.o CMakeFiles/graphics.dir/regform.cpp.o CMakeFiles/graphics.dir/wordsform.cpp.o
-/usr/bin/ranlib libgraphics.a
