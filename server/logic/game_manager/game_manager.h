@@ -37,6 +37,8 @@ class Game_manager{
 
     Room get_room(const int& id);
 
+    Player login(const string& login, const string& password);
+
     std::string get_word();
 
     // std::vector<Room_grebeshok> view_rooms_grebeshok(); //показать все комнаты в "игре гребешок"

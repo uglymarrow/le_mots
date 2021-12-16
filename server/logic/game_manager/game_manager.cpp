@@ -27,6 +27,12 @@ Game_manager* Game_manager::get_instance()
     return instance;
 }
 
+Player Game_manager::login(const string& login, const string& password)
+{
+  User user_model;
+  return user_model.login(login, password);
+}
+
 bool Game_manager::create_room(const std::string& name, const Player& creator, const std::string& password)
 {
   int id = Game_manager::get_instance()->count_rooms() + 1;
