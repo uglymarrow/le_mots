@@ -1,0 +1,6 @@
+# Hashes of file build rules.
+6f171b7bf5ba8728b08735c06f0773ca graphics/CMakeFiles/graphics_autogen
+3a81896ef2f8b4f968cf9f26583731e4 graphics/ui_loginform.h
+09352e7ef3f15ea836621f8a53865c6b graphics/ui_menu.h
+3d7556abf7d360d0428045381b7a8c5a graphics/ui_regform.h
+2b64634e78ba684349ac153937c59481 graphics/ui_wordsform.h

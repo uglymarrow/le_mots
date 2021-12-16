@@ -1,0 +1,12 @@
+/home/ksenia/cringe/server/build/CMakeFiles/test_game.dir
+/home/ksenia/cringe/server/build/CMakeFiles/edit_cache.dir
+/home/ksenia/cringe/server/build/CMakeFiles/rebuild_cache.dir
+/home/ksenia/cringe/server/build/database/CMakeFiles/database_lib.dir
+/home/ksenia/cringe/server/build/database/CMakeFiles/edit_cache.dir
+/home/ksenia/cringe/server/build/database/CMakeFiles/rebuild_cache.dir
+/home/ksenia/cringe/server/build/logic/CMakeFiles/logic_lib.dir
+/home/ksenia/cringe/server/build/logic/CMakeFiles/edit_cache.dir
+/home/ksenia/cringe/server/build/logic/CMakeFiles/rebuild_cache.dir
+/home/ksenia/cringe/server/build/server_lib/CMakeFiles/server_lib.dir
+/home/ksenia/cringe/server/build/server_lib/CMakeFiles/edit_cache.dir
+/home/ksenia/cringe/server/build/server_lib/CMakeFiles/rebuild_cache.dir
