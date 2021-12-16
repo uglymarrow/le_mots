@@ -1,9 +1,0 @@
-/home/sasha/Документы/le_mots/server/build/CMakeFiles/rebuild_cache.dir
-/home/sasha/Документы/le_mots/server/build/CMakeFiles/edit_cache.dir
-/home/sasha/Документы/le_mots/server/build/CMakeFiles/test_game.dir
-/home/sasha/Документы/le_mots/server/build/database/CMakeFiles/rebuild_cache.dir
-/home/sasha/Документы/le_mots/server/build/database/CMakeFiles/edit_cache.dir
-/home/sasha/Документы/le_mots/server/build/database/CMakeFiles/database_lib.dir
-/home/sasha/Документы/le_mots/server/build/logic/CMakeFiles/rebuild_cache.dir
-/home/sasha/Документы/le_mots/server/build/logic/CMakeFiles/edit_cache.dir
-/home/sasha/Документы/le_mots/server/build/logic/CMakeFiles/logic_lib.dir

@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Werror -Wpedantic -lmysqlcppconn -lmysqlcppconn-static -pthread   CMakeFiles/test_game.dir/main.cpp.o  -o test_game  -Wl,-rpath,/home/sasha/Документы/le_mots/server/build/database:/home/sasha/Документы/le_mots/server/build/logic database/libdatabase_lib.so logic/liblogic_lib.so -lpthread -lmysqlcppconn 
