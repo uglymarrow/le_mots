@@ -33,25 +33,23 @@ Profile Command::login(const std::string& user, const std::string& password) {
 
     value jv;
 
-    try {
-        object const& data = safly_read(json);
-    
-        if (!value_to<int>(data.at("type"))) throw std::invalid_argument("User not found");
+    object const& data = safly_read(json);
 
-        return Profile(value_to<std::string>(data.at("info").at("user")));
-    } catch (std::exception& inv) {
-        
-    }
+    if (!value_to<int>(data.at("type"))) throw std::invalid_argument("User not found");
+
+    return Profile(value_to<std::string>(data.at("info").at("user")));
 }
 
-std::string Command::all_rooms() {
+std::pair<int, std::string> Command::all_rooms() {
     value jv = {
         { "type", "rooms" }
     };
 
     std::string json = client.send(std::string(serialize(jv)));
 
-    return json;
+    object const& data = safly_read(json);
+
+    std::pair<int, std::string> pa(value_to<int>(data.at("info").at("id")), value_to<std::string>(data.at("info").at("name")))
 }
 
 bool Command::create_room(std::string &name) {
