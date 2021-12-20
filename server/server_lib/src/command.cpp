@@ -76,7 +76,7 @@ void Command::all_rooms(object const& data, std::string& buf) {
         arr[i] = {
             {"id", item.second.get_id()},
             {"name", item.second.get_name()}
-        }
+        };
         i++;
     }
 
@@ -99,7 +99,7 @@ void Command::create_room(object const& data, std::string& buf) {
 }
 
 void Command::join_room(object const& data, std::string& buf) {
-    Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id"))->add_player(Game_manager::get_instance()->get_player(user.get_id()));
+    Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id")))->add_player(*Game_manager::get_instance()->get_player(*user));
 
     value jv = {
         { "type", 1 }
