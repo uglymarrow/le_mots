@@ -27,7 +27,7 @@ public:
     {};
 
     Room(const Room &s):name_of_room(s.name_of_room), room_id(s.room_id), password(s.password),
-    creator(s.creator), opp(s.opp), nickname(s.nickname), main_word(s.main_word){};
+    creator(s.creator), opp(s.opp), winner(s.winner), main_word(s.main_word){};
 
     Room& operator=(const Room &s); 
 
