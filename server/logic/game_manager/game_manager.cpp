@@ -185,9 +185,9 @@ Room* Game_manager::get_room(const int& id)
   return &rooms[id];
 }
 
-std::map<int, Room>* Game_manager::view_all_rooms()
+std::map<int, Room> Game_manager::view_all_rooms()
 {
-  return &rooms;
+  return rooms;
 }
 
 Game_manager::~Game_manager()
@@ -195,14 +195,14 @@ Game_manager::~Game_manager()
      delete instance;
 }
 
-std::map<int, Player>* Game_manager::view_all_players()
+std::map<int, Player> Game_manager::view_all_players()
 {
-  return &players;
+  return players;
 }
 
 int Game_manager::count_rooms()
 {
-  return (*Game_manager::get_instance()->view_all_rooms()).size();
+  return (Game_manager::get_instance()->view_all_rooms()).size();
 }
 
 std::string Game_manager::get_word()

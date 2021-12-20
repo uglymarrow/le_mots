@@ -13,13 +13,13 @@ class Game_manager{
 
     static Game_manager* get_instance();
 
-    std::map<int, class Room>* view_all_rooms();
+    std::map<int, class Room> view_all_rooms();
 
     bool create_room(const std::string& name, const Player& creator, const std::string& password = "-");
 
     int add_player(const std::string& login, const std::string& password);//returns id
 
-    std::map<int, Player>* view_all_players();
+    std::map<int, Player> view_all_players();
 
     int count_rooms();//для определения id комнаты
 
