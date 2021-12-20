@@ -13,12 +13,12 @@ bool Command::login(std::string json, std::string& buf) {
     value jv;
 
     try {
-        //object const& data = safly_read(json);
+        object const& data = safly_read(json);
 
         
     
         try {
-            //user = Game_manager::get_instance()->login(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
+            user = Game_manager::get_instance()->login(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
         } catch (std::exception& inv) {
             jv = {
                 { "type", 0 },
@@ -35,7 +35,7 @@ bool Command::login(std::string json, std::string& buf) {
         jv = {
             { "type", 1 },
             { "info", {
-                { "user", "aaa" /*value_to<std::string>(data.at("info").at("user"))*/ },
+                { "user", value_to<std::string>(data.at("info").at("user")) },
             } }
         };
         buf = serialize(jv);
@@ -69,7 +69,7 @@ void Command::all_rooms(object const& data, std::string& buf) {
 
     std::map<int, class Room> &rooms = Game_manager::get_instance()->view_all_players();
 
-    /*int i = 0;
+    int i = 0;
     value *arr = new value[rooms.size()];
 
     for (auto &item : rooms) {
@@ -84,7 +84,7 @@ void Command::all_rooms(object const& data, std::string& buf) {
         { "type", 1 },
         { "info", arr }
     };
-    buf = serialize(jv);*/
+    buf = serialize(jv);
 }
 
 void Command::create_room(object const& data, std::string& buf) {
