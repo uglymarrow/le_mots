@@ -67,20 +67,19 @@ void Command::controller(std::string json, std::string& buf) {
 void Command::all_rooms(object const& data, std::string& buf) {
     //buf = value_to<std::string>(data.at("type")) + std::string("anume");
 
-    std::map<int, class Room> &rooms = Game_manager::get_instance()->view_all_players();
+    std::map<int, class Room> rooms = Game_manager::get_instance()->view_all_players();
 
     int i = 0;
     value *arr = new value[rooms.size()];
 
-    for (auto &item : rooms) {
-        value[i] = {
-            {"id", item.get_id()},
-            {"name", item.get_name()}
+    for (int = 0; i < rooms.size(); i++) {
+        arr[i] = {
+            {"id", rooms[i].second.get_id()},
+            {"name", rooms[i].second.get_name()}
         }
-        i++;
     }
 
-    jv = {
+    value jv = {
         { "type", 1 },
         { "info", arr }
     };
@@ -92,7 +91,7 @@ void Command::create_room(object const& data, std::string& buf) {
 
     bool re = Game_manager::get_instance()->create_room(value_to<std::string>(data.at("info").at("name")), user);
 
-    jv = {
+    value jv = {
         { "type", 1 }
     };
     buf = serialize(jv);
@@ -101,7 +100,7 @@ void Command::create_room(object const& data, std::string& buf) {
 void Command::join_room(object const& data, std::string& buf) {
     Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id"))->add_player(Game_manager::get_instance()->get_player(user.get_id()));
 
-    jv = {
+    value jv = {
         { "type", 1 }
     };
     buf = serialize(jv);
