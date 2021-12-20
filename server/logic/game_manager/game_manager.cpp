@@ -35,7 +35,9 @@ Player Game_manager::login(const string& login, const string& password)
 
 bool Game_manager::create_room(const std::string& name, const Player& creator, const std::string& password)
 {
-  int id = Game_manager::get_instance()->count_rooms() + 1;
+  int id = Game_manager::get_instance()->count_rooms() + 1; 
+  if (!is_login(creator.get_id())) 
+    return false;
   if (password == "-")
   {
     Room new_room(name, id, creator);
@@ -51,7 +53,7 @@ bool Game_manager::create_room(const std::string& name, const Player& creator, c
     }
     else 
     {
-      rooms.insert(std::make_pair(id, new_room));
+      rooms.emplace(std::make_pair(id, new_room));
       return true;
     }
   }
@@ -64,7 +66,7 @@ bool Game_manager::create_room(const std::string& name, const Player& creator, c
     }
     else 
     {
-      rooms.insert(std::make_pair(id, new_room));
+      rooms.emplace(std::make_pair(id, new_room));
       return true;
     }
   }
@@ -112,7 +114,8 @@ bool Game_manager::update_stat(const int& id, const Stat& stat)
 {
   if (is_login(id)){
   try{
-    if (model_user.update_stat(players[id].get_login(), stat.games, stat.win_game))
+    User mod_user;
+    if (mod_user.update_stat(players[id].get_login(), stat.games, stat.win_game))
     {
       return true;
     }
@@ -130,16 +133,14 @@ bool Game_manager::update_stat(const int& id, const Stat& stat)
     return false;
 }
 
-bool Game_manager::check_answer(const int& id, const std::string& word)
+bool Game_manager::check_answer(const int& login_id, const int& room_id, const std::string& word)
 {
-  if (is_login(id))
+  if (is_login(login_id))
   {
-    if (model_word.check_word(word))
+    Word mod_word;
+    if (mod_word.check_word(word))
     {
-      Score old_score = players[id].get_score();
-      old_score.current_score += 1;
-      old_score.sum_of_letters += word.size();
-      players[id].refresh_score(old_score);
+      Game_manager::get_instance()->get_room(room_id)->get_player_id(login_id)->refresh_score();
       return true;
     }
     else
@@ -155,12 +156,16 @@ bool Game_manager::join_room(const int& player_id, const int& room_id)
   {
     if (is_room(room_id))
     {
-      if (Game_manager::get_instance()->get_room(room_id).add_player(Game_manager::get_instance()->get_player(player_id)))
-      {
-        cout << Game_manager::get_instance()->get_player(player_id).get_login() << std::endl; 
-        return true;
-      }
-      else 
+      // if (Game_manager::get_instance()->get_room(room_id).add_player(Game_manager::get_instance()->get_player(player_id)))
+      // {
+        // Room buf = Game_manager::get_instance()->get_room(room_id);
+        // Room new_one(buf.get_name(), buf.get_id(), buf.get_creator(), Game_manager::get_instance()->get_player(player_id));
+        // rooms.erase(room_id);
+        // rooms.emplace(std::make_pair(room_id, new_one));
+        // cout << Game_manager::get_instance()->get_player(player_id).get_login() << std::endl; 
+        // return true;
+      // }
+      // else 
         return false;
     }
     else 
@@ -170,19 +175,19 @@ bool Game_manager::join_room(const int& player_id, const int& room_id)
       return false;
 }
 
-Player Game_manager::get_player(const int& id)
+Player* Game_manager::get_player(const int& id)
 {
-  return players[id];
+  return &players[id];
 }
 
-Room Game_manager::get_room(const int& id)
+Room* Game_manager::get_room(const int& id)
 {
-  return rooms[id];
+  return &rooms[id];
 }
 
-std::map<int, Room> Game_manager::view_all_rooms()
+std::map<int, Room>* Game_manager::view_all_rooms()
 {
-  return rooms;
+  return &rooms;
 }
 
 Game_manager::~Game_manager()
@@ -190,18 +195,19 @@ Game_manager::~Game_manager()
      delete instance;
 }
 
-std::map<int, Player> Game_manager::view_all_players()
+std::map<int, Player>* Game_manager::view_all_players()
 {
-  return players;
+  return &players;
 }
 
 int Game_manager::count_rooms()
 {
-  return Game_manager::get_instance()->view_all_rooms().size();
+  return (*Game_manager::get_instance()->view_all_rooms()).size();
 }
 
 std::string Game_manager::get_word()
 {
-  return model_word.get_word();
+  Word mod_word;
+  return mod_word.get_word();
 }
 

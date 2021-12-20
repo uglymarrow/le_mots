@@ -6,39 +6,41 @@ Room& Room::operator=(const Room &s)
     password = s.password;
     room_id = s.room_id;
     creator = s.creator;
-    for (auto i : s.players_in_room)
-    {  
-        players_in_room.insert(i);
-    }
+    opp = s.opp;
+    nickname = s.nickname;
     return *this;
 } 
 
-std::map<int, class Player> Room::get_players()
+std::pair<Player, Player> Room::get_players()
 {
-    std::map<int, class Player> result = players_in_room;
-    result.insert(std::make_pair(creator.get_id(), creator));
-    return result;
+    return std::make_pair(creator, opp);
 }
 
-void Room::view_players()
+Player* Room::get_player_id(const int& id)
 {
-    std::map<int, class Player> result = players_in_room;
-    result.insert(std::make_pair(creator.get_id(), creator));
-    for (auto i : result)
-    {
-        std::cout << i.second.get_login() << std::endl;
-    }
+    if (opp.get_id() == id)
+        return &opp;
+    else 
+        return &creator;
 }
 
-bool Room::add_player(const Player& new_player)
+
+bool Room::add_player(const Player& new_one)
 {
-    if (players_in_room.size() < 3)
+    if (size == 0)
     {
-        players_in_room.insert(std::make_pair(new_player.get_id(), new_player));
+        nickname = new_one.get_login();
+        opp = new_one;
+        size++;
         return true;
     }
     else    
         return false;
+}
+
+std::string Room::get_opp_nick()
+{
+    return nickname;
 }
 
 bool Room::start_game()
@@ -61,20 +63,13 @@ bool Room::start_game()
     return true;
 }
 
-Player Room::get_winner()
+std::string Room::get_winner()
 {
-    std::map<int, class Player> result = players_in_room;
-    result.insert(std::make_pair(creator.get_id(), creator));
-    Player winner = result.begin()->second;
-    int max_score = 0;
-    for (auto i : result)
-    {
-        if (i.second.get_score().current_score > max_score)
-        {
-            max_score = i.second.get_score().current_score;
-            winner = i.second;
-        }
-    }
-    return winner;
-
+    // cout << creator.get_score().current_score << endl;
+    // cout << opp.get_score().current_score << endl;
+    if (creator.get_score().current_score > opp.get_score().current_score)
+        return creator.get_login();
+    else if (creator.get_score().current_score < opp.get_score().current_score)
+        return opp.get_login();
+    else return "Победила дружба!";
 }

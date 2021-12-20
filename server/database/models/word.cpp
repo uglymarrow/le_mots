@@ -128,10 +128,10 @@ bool Word::update_database(const std::string& filename, bool category)
 Word::Word()
 {
     con = Connection_db::get_instance();
-    con->connect("tcp://127.0.0.1:3306", "login", "kFBrpvet");
+    con->connect("tcp://127.0.0.1:3306", "login1", "kFBrpvet");
 }
 
 Word::~Word()
 {
-    con->close();
+    // con->close();
 }

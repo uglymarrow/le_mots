@@ -185,5 +185,4 @@ User::User()
 User::~User()
 {
     // con->close();
-    std::cout << "user destroyed";
 }

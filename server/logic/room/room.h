@@ -11,7 +11,9 @@ private:
     int room_id;//по id будем обращаться к определенной комнате 
     std::string password = "-";
     Player creator;
-    std::map<int, class Player> players_in_room;
+    int size = 0;
+    Player opp;
+    std::string nickname;
 public:
     Room(){};
 
@@ -23,8 +25,12 @@ public:
     : name_of_room(name_), room_id(id), password(pass),  creator(first)
     {};
 
+    Room(const std::string& name_, const int& id, const Player& first, const Player& second) 
+    : name_of_room(name_), room_id(id), creator(first), opp(second)
+    {};
+
     Room(const Room &s):name_of_room(s.name_of_room), room_id(s.room_id), password(s.password),
-    creator(s.creator), players_in_room(s.players_in_room){};
+    creator(s.creator), opp(s.opp), nickname(s.nickname){};
 
     Room& operator=(const Room &s); 
 
@@ -36,22 +42,26 @@ public:
 
     int end_game();//по окончанию таймера запускается данный метод, который отсылает клиенту сигнал о завершении
 
-    int is_exist();//существует ли комната, проверка на наличие уже такой комнаты на сервере
+    // int is_exist();//существует ли комната, проверка на наличие уже такой комнаты на сервере
 
-    bool add_player(const Player& new_player);//добавление игрока в комнату
+    bool add_player(const Player& nick);//добавление игрока в комнату
 
     int number_of_players();//количество игроков в комнате
 
-    Player get_creator(){return creator;};
+    Player get_creator() {return creator;};
 
-    std::map<int, class Player> get_players();
+    std::pair<Player, Player> get_players();
 
     std::string get_name() const {return name_of_room;};
 
     int get_id() const {return room_id;};
 
-    void view_players();
+    std::string get_winner();
 
-    Player get_winner();
+    void print_players();
+
+    std::string get_opp_nick();
+
+    Player* get_player_id(const int& id);
 };
 

@@ -47,9 +47,9 @@ Player& Player::operator=(const Player &s)
     return *this;
 } 
 
-void Player::refresh_score(const Score& score)
+void Player::refresh_score()
 {
-    score_in_game = score;
+    score_in_game.current_score += 1;
 }
 
 

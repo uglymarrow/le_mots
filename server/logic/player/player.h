@@ -39,7 +39,7 @@ public:
 
   bool is_ready() const;//проверка готовности пользователя
 
-  void refresh_score(const Score& score);
+  void refresh_score();
 
   void get_ready();
 
