@@ -69,7 +69,7 @@ void Command::all_rooms(object const& data, std::string& buf) {
 
     std::map<int, class Room> rooms = Game_manager::get_instance()->view_all_rooms();
 
-    int i = 0;
+    /*int i = 0;
     value *arr = new value[rooms.size()];
 
     for (auto item : rooms) {
@@ -78,11 +78,14 @@ void Command::all_rooms(object const& data, std::string& buf) {
             {"name", item.second.get_name()}
         };
         i++;
-    }
+    }*/
 
     value jv = {
         { "type", 1 },
-        { "info", arr }
+        { "info", {
+            { "id", rooms[0].secound.get_id() },
+            { "user", rooms[0].secound.get_name() }
+        } }
     };
     buf = serialize(jv);
 }

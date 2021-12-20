@@ -18,8 +18,8 @@ public:
     Profile login(const std::string& user, const std::string& password);
 
     std::string all_rooms();
-    bool Command::create_room(std::string &name);
-    bool Command::join_room(int);
+    bool create_room(std::string &name);
+    bool join_room(int);
 private:
     object const safly_read(std::string& json);
 
