@@ -6,6 +6,8 @@
 #include <boost/bind/bind.hpp>
 #include <boost/asio.hpp>
 
+#include "user.h"
+#include "word.h"
 #include "command.h"
 
 using boost::asio::ip::tcp;

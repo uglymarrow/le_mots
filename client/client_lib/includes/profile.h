@@ -8,10 +8,10 @@
   int games = 0;//для статистики пользователя
 };*/
 
-class Player {
+class Profile {
   std::string login;
   //Stat player_stat;
 public:
-  Player(std::string login_);//создание нового пользователя
+  Profile (std::string login_);//создание нового пользователя
   std::string get_login() const;
 };

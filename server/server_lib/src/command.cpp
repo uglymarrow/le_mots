@@ -7,18 +7,18 @@
 
 #include <map>
 
-//#include "Gamemanager.h"
-
 using namespace boost::json;
 
 bool Command::login(std::string json, std::string& buf) {
     value jv;
 
     try {
-        object const& data = safly_read(json);
+        //object const& data = safly_read(json);
+
+        
     
         try {
-            //user = game->login(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
+            //user = Game_manager::get_instance()->login(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
         } catch (std::exception& inv) {
             jv = {
                 { "type", 0 },
@@ -35,7 +35,7 @@ bool Command::login(std::string json, std::string& buf) {
         jv = {
             { "type", 1 },
             { "info", {
-                { "user", value_to<std::string>(data.at("info").at("user")) },
+                { "user", "aaa" /*value_to<std::string>(data.at("info").at("user"))*/ },
             } }
         };
         buf = serialize(jv);
@@ -52,8 +52,12 @@ void Command::controller(std::string json, std::string& buf) {
     try {
         object const& data = safly_read(json);
     
-        if(value_to<std::string>(data.at("type")) == std::string("rooms")) {
+        if(value_to<std::string>(data.at("type")) == "rooms") {
             all_rooms(data, buf);
+        } else if(value_to<std::string>(data.at("type")) == "join_room") {
+            join_room(data, buf);
+        } else {
+            create_room(data, buf);
         }
     } catch (std::exception& inv) {
         
@@ -61,12 +65,51 @@ void Command::controller(std::string json, std::string& buf) {
 }
 
 void Command::all_rooms(object const& data, std::string& buf) {
-    buf = value_to<std::string>(data.at("type")) + std::string("anume");
+    //buf = value_to<std::string>(data.at("type")) + std::string("anume");
+
+    std::map<int, class Room> &rooms = Game_manager::get_instance()->view_all_players();
+
+    /*int i = 0;
+    value *arr = new value[rooms.size()];
+
+    for (auto &item : rooms) {
+        value[i] = {
+            {"id", item.get_id()},
+            {"name", item.get_name()}
+        }
+        i++;
+    }
+
+    jv = {
+        { "type", 1 },
+        { "info", arr }
+    };
+    buf = serialize(jv);*/
+}
+
+void Command::create_room(object const& data, std::string& buf) {
+    //buf = value_to<std::string>(data.at("type")) + std::string("anume");
+
+    bool re = Game_manager::get_instance()->create_room(value_to<std::string>(data.at("info").at("name")), user);
+
+    jv = {
+        { "type", 1 }
+    };
+    buf = serialize(jv);
+}
+
+void Command::join_room(object const& data, std::string& buf) {
+    Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id"))->add_player(Game_manager::get_instance()->get_player(user.get_id()));
+
+    jv = {
+        { "type", 1 }
+    };
+    buf = serialize(jv);
 }
 
 object const Command::safly_read(std::string& json) {
     value json_data;
-    error_code ec;
+    boost::json::error_code ec;
 
     try {
         json_data = parse(json, ec);
@@ -82,5 +125,4 @@ object const Command::safly_read(std::string& json) {
 }
 
 Command::Command() {
-    //Gamemanager* game = Gamemanager::get_instance();
 }

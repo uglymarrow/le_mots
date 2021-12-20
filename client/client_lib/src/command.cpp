@@ -9,7 +9,7 @@
 #include <boost/json.hpp>
 #include <boost/json/src.hpp>
 
-#include "player.h"
+// #include "player.h"
 
 using namespace boost::json;
 using boost::asio::ip::tcp;
@@ -18,7 +18,7 @@ Command::Command(boost::asio::io_context &io_context): client(io_context) {
     client.connect(std::string("127.0.0.1"), std::string("8000"));
 }
 
-Player Command::login(const std::string& user, const std::string& password) {
+Profile Command::login(const std::string& user, const std::string& password) {
     value jv = {
         { "type", "login" },
         { "info", {
@@ -31,20 +31,17 @@ Player Command::login(const std::string& user, const std::string& password) {
 
     std::cout << json << std::endl;
 
-    error_code ec;
-    value json_data;
+    value jv;
 
     try {
-        json_data = parse(json, ec);
-    } catch(std::bad_alloc const& e) {
-        throw std::invalid_argument("Failed parsing");
+        object const& data = safly_read(json);
+    
+        if (!value_to<int>(data.at("type"))) throw std::invalid_argument("User not found");
+
+        return Profile(value_to<std::string>(data.at("info").at("user")));
+    } catch (std::exception& inv) {
+        
     }
-
-    object const& data = json_data.as_object();
-
-    if (!value_to<int>(data.at("type"))) throw std::invalid_argument("User not found");
-
-    return Player(value_to<std::string>(data.at("info").at("user")));
 }
 
 std::string Command::all_rooms() {
@@ -55,4 +52,47 @@ std::string Command::all_rooms() {
     std::string json = client.send(std::string(serialize(jv)));
 
     return json;
+}
+
+bool Command::create_room(std::string &name) {
+    value jv = {
+        { "type", "create_room" },
+        { "info", {
+            { "name", name }
+        } }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    return true;
+}
+
+bool Command::join_room(int id) {
+    value jv = {
+        { "type", "join_room" },
+        { "info", {
+            { "id", id }
+        } }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    return true;
+}
+
+object const Command::safly_read(std::string& json) {
+    value json_data;
+    boost::json::error_code ec;
+
+    try {
+        json_data = parse(json, ec);
+    } catch(std::bad_alloc const& e) {
+        throw std::invalid_argument("Failed parsing");
+    }
+
+    if (ec) {
+        throw std::invalid_argument("Failed parsing");
+    }
+
+    return json_data.as_object();
 }

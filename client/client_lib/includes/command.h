@@ -7,7 +7,7 @@
 #include <string>
 #include <boost/json.hpp>
 
-#include "player.h"
+#include "profile.h"
 
 using namespace boost::json;
 
@@ -15,9 +15,13 @@ class Command {
 public:
     Command(boost::asio::io_context &io_context);
 
-    Player login(const std::string& user, const std::string& password);
+    Profile login(const std::string& user, const std::string& password);
 
     std::string all_rooms();
+    bool Command::create_room(std::string &name);
+    bool Command::join_room(int);
 private:
+    object const safly_read(std::string& json);
+
     Client client;
 };
