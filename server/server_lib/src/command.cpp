@@ -67,16 +67,17 @@ void Command::controller(std::string json, std::string& buf) {
 void Command::all_rooms(object const& data, std::string& buf) {
     //buf = value_to<std::string>(data.at("type")) + std::string("anume");
 
-    std::map<int, class Room> rooms = Game_manager::get_instance()->view_all_players();
+    std::map<int, class Room> rooms = Game_manager::get_instance()->view_all_rooms();
 
     int i = 0;
     value *arr = new value[rooms.size()];
 
-    for (int = 0; i < rooms.size(); i++) {
+    for (auto item : rooms) {
         arr[i] = {
-            {"id", rooms[i].second.get_id()},
-            {"name", rooms[i].second.get_name()}
+            {"id", item.second.get_id()},
+            {"name", item.second.get_name()}
         }
+        i++;
     }
 
     value jv = {
