@@ -33,41 +33,36 @@ Player Game_manager::login(const string& login, const string& password)
   return user_model.login(login, password);
 }
 
-bool Game_manager::create_room(const std::string& name, const Player& creator, const std::string& password)
+std::pair<int, string> Game_manager::create_room(const std::string& name, const Player& creator, const std::string& password)
 {
   int id = Game_manager::get_instance()->count_rooms() + 1; 
-  if (!is_login(creator.get_id())) 
-    return false;
   if (password == "-")
   {
-    Room new_room(name, id, creator);
-    if (rooms.size() == 0)
-    {
-      rooms.emplace(std::make_pair(1, new_room));
-      return true;
-    }
+    Word mod_word;
+    Room new_room(name, id, creator, mod_word.get_word());
+    cout << new_room.get_word() << endl;
     if (std::find(rooms.begin(), rooms.end(), new_room) != rooms.end())
     {
-      cout << id << endl;
-      return false;
+      return std::make_pair(-1,"error");
     }
     else 
     {
       rooms.emplace(std::make_pair(id, new_room));
-      return true;
+      return std::make_pair(id, new_room.get_word());
     }
   }
   else
   {
-    Room new_room(name, password, id, creator);
+    Word mod_word;
+    Room new_room(name, password, id, creator, mod_word.get_word());
     if (std::find(rooms.begin(), rooms.end(), new_room) != rooms.end())
     {
-      return false;
+      return std::make_pair(-1,"error");
     }
     else 
     {
       rooms.emplace(std::make_pair(id, new_room));
-      return true;
+      return std::make_pair(id, new_room.get_word());
     }
   }
 }
@@ -135,6 +130,19 @@ bool Game_manager::update_stat(const int& id, const Stat& stat)
 
 bool Game_manager::check_answer(const int& login_id, const int& room_id, const std::string& word)
 {
+  std::string main_word = Game_manager::get_room(room_id)->get_word();
+  std::vector<char> temp;
+  for (auto i : main_word)
+  {
+    temp.push_back(i);
+  }
+  for (auto i : word)
+  {
+    auto it = std::find(temp.begin(), temp.end(), i);
+    if (it == temp.end())
+      return false;
+    else temp.erase(it);
+  }
   if (is_login(login_id))
   {
     Word mod_word;

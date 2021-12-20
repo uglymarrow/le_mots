@@ -15,7 +15,7 @@ class Game_manager{
 
     std::map<int, class Room> view_all_rooms();
 
-    bool create_room(const std::string& name, const Player& creator, const std::string& password = "-");
+    std::pair<int, string> create_room(const std::string& name, const Player& creator, const std::string& password = "-");
 
     int add_player(const std::string& login, const std::string& password);//returns id
 

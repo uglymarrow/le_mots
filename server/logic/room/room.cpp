@@ -7,7 +7,7 @@ Room& Room::operator=(const Room &s)
     room_id = s.room_id;
     creator = s.creator;
     opp = s.opp;
-    nickname = s.nickname;
+    winner = s.winner;
     return *this;
 } 
 
@@ -24,23 +24,26 @@ Player* Room::get_player_id(const int& id)
         return &creator;
 }
 
+std::string Room::get_word()
+{
+    return main_word;
+}
+
+void Room::change_word(const std::string& new_word)
+{
+    main_word = new_word;
+}
 
 bool Room::add_player(const Player& new_one)
 {
     if (size == 0)
     {
-        nickname = new_one.get_login();
         opp = new_one;
         size++;
         return true;
     }
     else    
         return false;
-}
-
-std::string Room::get_opp_nick()
-{
-    return nickname;
 }
 
 bool Room::start_game()
@@ -61,6 +64,13 @@ bool Room::start_game()
     // else    
     //     return false;
     return true;
+}
+
+bool Room::is_ready()
+{
+    if (size == 1)
+        return true;
+    else return false;
 }
 
 std::string Room::get_winner()
