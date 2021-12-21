@@ -22,7 +22,7 @@ int main()
     cout << get<1>(result) << endl;
     cout << Game_manager::get_instance()->get_room(1)->is_ready() << endl;
 
-    Game_manager::get_instance()->get_room(1)->add_player(*Game_manager::get_instance()->get_player(3));
+    cout << Game_manager::get_instance()->get_room(1)->add_player(*Game_manager::get_instance()->get_player(3)) << endl;
 
     cout << Game_manager::get_instance()->get_room(1)->get_word() << endl;
 

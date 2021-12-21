@@ -41,7 +41,7 @@ public:
 
     // int is_exist();//существует ли комната, проверка на наличие уже такой комнаты на сервере
 
-    bool add_player(const Player& nick);//добавление игрока в комнату
+    std::string add_player(const Player& new_one);//добавление игрока в комнату
 
     int number_of_players();//количество игроков в комнате
 

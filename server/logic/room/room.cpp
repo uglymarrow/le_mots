@@ -34,16 +34,16 @@ void Room::change_word(const std::string& new_word)
     main_word = new_word;
 }
 
-bool Room::add_player(const Player& new_one)
+std::string Room::add_player(const Player& new_one)
 {
     if (size == 0)
     {
         opp = new_one;
         size++;
-        return true;
+        return main_word;
     }
     else    
-        return false;
+        return "error";
 }
 
 bool Room::start_game()
