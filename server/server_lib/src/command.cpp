@@ -89,8 +89,8 @@ void Command::all_rooms(object const& data, std::string& buf) {
     value jv = {
         { "type", 1 },
         { "info", {
-            { "id", rooms[0].secound.get_id() },
-            { "user", rooms[0].secound.get_name() }
+            { "id", rooms[0].get_id() },
+            { "name", rooms[0].get_name() }
         } }
     };
     buf = serialize(jv);
@@ -101,12 +101,12 @@ void Command::create_room(object const& data, std::string& buf) {
 
     std::pair<int, std::string> rez = Game_manager::get_instance()->create_room(value_to<std::string>(data.at("info").at("name")), user);
 
-    room_id = rez<0>;
+    room_id = std::get<0>(rez);
 
     value jv = {
-        { "type", 1 }
+        { "type", 1 },
         { "info", {
-            { "word", rez<1> }
+            { "word", std::get<1>(rez); }
         } }
     };
     buf = serialize(jv);
@@ -127,18 +127,21 @@ void Command::get_winner(object const& data, std::string& buf) {
 }
 
 void Command::join_room(object const& data, std::string& buf) {
-    Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id")))->add_player(*Game_manager::get_instance()->get_player(user.get_id()));
+    std::string word = Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id")))->add_player(*Game_manager::get_instance()->get_player(user.get_id()));
 
     room_id = value_to<int>(data.at("info").at("id"));
 
     value jv = {
-        { "type", 1 }
+        { "type", 1 },
+        { "info", {
+            { "word", word }
+        } }
     };
     buf = serialize(jv);
 }
 
 void Command::check_word(object const& data, std::string& buf) {
-    int answ = Game_manager::get_instance()->check_answer(user.get_id(), room_id, data.at("info").at("word"));
+    int answ = Game_manager::get_instance()->check_answer(user.get_id(), room_id, value_to<std::string>(data.at("info").at("word")));
 
     value jv = {
         { "type", answ }

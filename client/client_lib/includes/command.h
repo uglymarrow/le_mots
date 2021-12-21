@@ -18,8 +18,8 @@ public:
     Profile login(const std::string& user, const std::string& password);
 
     std::pair<int, std::string> all_rooms();
-    bool create_room(std::string &name);
-    bool join_room(int);
+    std::string create_room(std::string &name);
+    std::string join_room(int);
     int is_ready();
     int get_winner();
     int check_word(std::string &str);

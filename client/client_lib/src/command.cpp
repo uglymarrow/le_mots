@@ -50,7 +50,7 @@ std::pair<int, std::string> Command::all_rooms() {
     std::pair<int, std::string> pa(value_to<int>(data.at("info").at("id")), value_to<std::string>(data.at("info").at("name")));
 }
 
-bool Command::create_room(std::string &name) {
+std::string Command::create_room(std::string &name) {
     value jv = {
         { "type", "create_room" },
         { "info", {
@@ -60,7 +60,11 @@ bool Command::create_room(std::string &name) {
 
     std::string json = client.send(std::string(serialize(jv)));
 
-    return true;
+    std::cout << json << std::endl;
+
+    object const& data = safly_read(json);
+
+    return value_to<std::string>(data.at("info").at("word"));
 }
 
 int Command::is_ready() {
@@ -102,7 +106,7 @@ int Command::get_winner() {
     return value_to<int>(data.at("type"));
 }
 
-bool Command::join_room(int id) {
+std::string Command::join_room(int id) {
     value jv = {
         { "type", "join_room" },
         { "info", {
@@ -112,7 +116,9 @@ bool Command::join_room(int id) {
 
     std::string json = client.send(std::string(serialize(jv)));
 
-    return true;
+    object const& data = safly_read(json);
+
+    return value_to<std::string>(data.at("info").at("word"));
 }
 
 object const Command::safly_read(std::string& json) {

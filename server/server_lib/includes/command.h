@@ -31,6 +31,7 @@ private:
     void join_room(object const& data, std::string& buf);
     void check_word(object const& data, std::string& buf);
     void get_winner(object const& data, std::string& buf);
+    void is_ready(object const& data, std::string& buf);
 
     object const safly_read(std::string& json);
     //std::map<std::string, std::function<void(object const&, std::string&)>> FuncMap;
