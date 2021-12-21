@@ -31,8 +31,6 @@ Profile Command::login(const std::string& user, const std::string& password) {
 
     std::cout << json << std::endl;
 
-    value jv;
-
     object const& data = safly_read(json);
 
     if (!value_to<int>(data.at("type"))) throw std::invalid_argument("User not found");
@@ -49,7 +47,7 @@ std::pair<int, std::string> Command::all_rooms() {
 
     object const& data = safly_read(json);
 
-    std::pair<int, std::string> pa(value_to<int>(data.at("info").at("id")), value_to<std::string>(data.at("info").at("name")))
+    std::pair<int, std::string> pa(value_to<int>(data.at("info").at("id")), value_to<std::string>(data.at("info").at("name")));
 }
 
 bool Command::create_room(std::string &name) {
@@ -63,6 +61,45 @@ bool Command::create_room(std::string &name) {
     std::string json = client.send(std::string(serialize(jv)));
 
     return true;
+}
+
+int Command::is_ready() {
+    value jv = {
+        { "type", "is_ready" }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    object const& data = safly_read(json);
+
+    return value_to<int>(data.at("type"));
+}
+
+int Command::check_word(std::string &str) {
+    value jv = {
+        { "type", "check_word" },
+        { "info", {
+            { "word", str }
+        } }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    object const& data = safly_read(json);
+
+    return value_to<int>(data.at("type"));
+}
+
+int Command::get_winner() {
+    value jv = {
+        { "type", "get_winner" }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    object const& data = safly_read(json);
+
+    return value_to<int>(data.at("type"));
 }
 
 bool Command::join_room(int id) {

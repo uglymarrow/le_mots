@@ -56,6 +56,12 @@ void Command::controller(std::string json, std::string& buf) {
             all_rooms(data, buf);
         } else if(value_to<std::string>(data.at("type")) == "join_room") {
             join_room(data, buf);
+        } else if(value_to<std::string>(data.at("type")) == "is_ready") {
+            join_room(data, buf);
+        } else if(value_to<std::string>(data.at("type")) == "check_word") {
+            check_word(data, buf);
+        } else if(value_to<std::string>(data.at("type")) == "get_winner") {
+            get_winner(data, buf);
         } else {
             create_room(data, buf);
         }
@@ -93,7 +99,37 @@ void Command::all_rooms(object const& data, std::string& buf) {
 void Command::create_room(object const& data, std::string& buf) {
     //buf = value_to<std::string>(data.at("type")) + std::string("anume");
 
-    bool re = Game_manager::get_instance()->create_room(value_to<std::string>(data.at("info").at("name")), user);
+    std::pair<int, std::string> rez = Game_manager::get_instance()->create_room(value_to<std::string>(data.at("info").at("name")), user);
+
+    room_id = rez<0>;
+
+    value jv = {
+        { "type", 1 }
+        { "info", {
+            { "word", rez<1> }
+        } }
+    };
+    buf = serialize(jv);
+}
+
+void Command::is_ready(object const& data, std::string& buf) {
+    value jv = {
+        { "type", Game_manager::get_instance()->get_room(room_id)->is_ready() }
+    };
+    buf = serialize(jv);
+}
+
+void Command::get_winner(object const& data, std::string& buf) {
+    value jv = {
+        { "type", Game_manager::get_instance()->get_room(room_id)->get_winner() }
+    };
+    buf = serialize(jv);
+}
+
+void Command::join_room(object const& data, std::string& buf) {
+    Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id")))->add_player(*Game_manager::get_instance()->get_player(user.get_id()));
+
+    room_id = value_to<int>(data.at("info").at("id"));
 
     value jv = {
         { "type", 1 }
@@ -101,11 +137,11 @@ void Command::create_room(object const& data, std::string& buf) {
     buf = serialize(jv);
 }
 
-void Command::join_room(object const& data, std::string& buf) {
-    Game_manager::get_instance()->get_room(value_to<int>(data.at("info").at("id")))->add_player(*Game_manager::get_instance()->get_player(*user));
+void Command::check_word(object const& data, std::string& buf) {
+    int answ = Game_manager::get_instance()->check_answer(user.get_id(), room_id, data.at("info").at("word"));
 
     value jv = {
-        { "type", 1 }
+        { "type", answ }
     };
     buf = serialize(jv);
 }
