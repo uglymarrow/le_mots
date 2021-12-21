@@ -33,7 +33,7 @@ Player Game_manager::login(const string& login, const string& password)
   return user_model.login(login, password);
 }
 
-std::pair<int, string> Game_manager::create_room(const std::string& name, const Player& creator, const std::string& password)
+std::pair<int, std::string> Game_manager::create_room(const std::string& name, const Player& creator, const std::string& password)
 {
   int id = Game_manager::get_instance()->count_rooms() + 1; 
   if (password == "-")

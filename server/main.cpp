@@ -15,9 +15,11 @@ int main()
     // std::map<int, class Room>* room;
     Game_manager::get_instance()->add_player("kabachok", "123");
     Game_manager::get_instance()->add_player("test_sign_in", "123");
-    Game_manager::get_instance()->create_room("test_room", 
+    std::pair<int, std::string> result = Game_manager::get_instance()->create_room("test_room", 
                       *(Game_manager::get_instance()->get_player(16)));
 
+    cout << get<0>(result) << endl;
+    cout << get<1>(result) << endl;
     cout << Game_manager::get_instance()->get_room(1)->is_ready() << endl;
 
     Game_manager::get_instance()->get_room(1)->add_player(*Game_manager::get_instance()->get_player(3));
