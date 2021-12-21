@@ -48,6 +48,8 @@ std::pair<int, std::string> Command::all_rooms() {
     object const& data = safly_read(json);
 
     std::pair<int, std::string> pa(value_to<int>(data.at("info").at("id")), value_to<std::string>(data.at("info").at("name")));
+
+    return pa;
 }
 
 std::string Command::create_room(std::string &name) {
@@ -94,7 +96,7 @@ int Command::check_word(std::string &str) {
     return value_to<int>(data.at("type"));
 }
 
-int Command::get_winner() {
+std::string Command::get_winner() {
     value jv = {
         { "type", "get_winner" }
     };
@@ -103,7 +105,7 @@ int Command::get_winner() {
 
     object const& data = safly_read(json);
 
-    return value_to<int>(data.at("type"));
+    return value_to<std::string>(data.at("info").at("user"));
 }
 
 std::string Command::join_room(int id) {

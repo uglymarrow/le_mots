@@ -57,7 +57,7 @@ void Command::controller(std::string json, std::string& buf) {
         } else if(value_to<std::string>(data.at("type")) == "join_room") {
             join_room(data, buf);
         } else if(value_to<std::string>(data.at("type")) == "is_ready") {
-            join_room(data, buf);
+            is_ready(data, buf);
         } else if(value_to<std::string>(data.at("type")) == "check_word") {
             check_word(data, buf);
         } else if(value_to<std::string>(data.at("type")) == "get_winner") {
@@ -89,15 +89,15 @@ void Command::all_rooms(object const& data, std::string& buf) {
     value jv = {
         { "type", 1 },
         { "info", {
-            { "id", rooms[0].get_id() },
-            { "name", rooms[0].get_name() }
+            { "id", rooms[1].get_id() },
+            { "name", rooms[1].get_name() }
         } }
     };
     buf = serialize(jv);
 }
 
 void Command::create_room(object const& data, std::string& buf) {
-    //buf = value_to<std::string>(data.at("type")) + std::string("anume");
+    std::cout << value_to<std::string>(data.at("info").at("name")) << std::endl;
 
     std::pair<int, std::string> rez = Game_manager::get_instance()->create_room(value_to<std::string>(data.at("info").at("name")), user);
 
@@ -106,7 +106,7 @@ void Command::create_room(object const& data, std::string& buf) {
     value jv = {
         { "type", 1 },
         { "info", {
-            { "word", std::get<1>(rez); }
+            { "word", std::get<1>(rez) }
         } }
     };
     buf = serialize(jv);
@@ -114,14 +114,18 @@ void Command::create_room(object const& data, std::string& buf) {
 
 void Command::is_ready(object const& data, std::string& buf) {
     value jv = {
-        { "type", Game_manager::get_instance()->get_room(room_id)->is_ready() }
+        { "type", (int)Game_manager::get_instance()->get_room(room_id)->is_ready() }
     };
     buf = serialize(jv);
 }
 
 void Command::get_winner(object const& data, std::string& buf) {
     value jv = {
-        { "type", Game_manager::get_instance()->get_room(room_id)->get_winner() }
+        { "type", 1 },
+        { "info", {
+            { "user", Game_manager::get_instance()->get_room(room_id)->get_winner() }
+        } }
+    };
     };
     buf = serialize(jv);
 }

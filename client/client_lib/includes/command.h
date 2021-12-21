@@ -21,7 +21,7 @@ public:
     std::string create_room(std::string &name);
     std::string join_room(int);
     int is_ready();
-    int get_winner();
+    std::string get_winner();
     int check_word(std::string &str);
 private:
     object const safly_read(std::string& json);
