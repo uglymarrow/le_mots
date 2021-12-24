@@ -21,7 +21,7 @@ bool Command::login(std::string json, std::string& buf) {
             if (value_to<std::string>(data.at("type")) == "login")
                 user = Game_manager::get_instance()->login(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
             else
-                user = Game_manager::get_instance()->add_player(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
+                user = Game_manager::get_instance()->register_player(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
         } catch (std::exception& inv) {
             jv = {
                 { "type", 0 },
