@@ -38,6 +38,26 @@ Profile Command::login(const std::string& user, const std::string& password) {
     return Profile(value_to<std::string>(data.at("info").at("user")));
 }
 
+Profile Command::reg(const std::string& user, const std::string& password) {
+    value jv = {
+        { "type", "reg" },
+        { "info", {
+            { "user", user },
+            { "password", password }
+        } }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    std::cout << json << std::endl;
+
+    object const& data = safly_read(json);
+
+    if (!value_to<int>(data.at("type"))) throw std::invalid_argument("User already registred");
+
+    return Profile(value_to<std::string>(data.at("info").at("user")));
+}
+
 std::pair<int, std::string> Command::all_rooms() {
     value jv = {
         { "type", "rooms" }

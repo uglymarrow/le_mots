@@ -16,6 +16,7 @@ public:
     Command(boost::asio::io_context &io_context);
 
     Profile login(const std::string& user, const std::string& password);
+    Profile reg(const std::string& user, const std::string& password);
 
     std::pair<int, std::string> all_rooms();
     std::string create_room(std::string &name);
