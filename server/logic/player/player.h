@@ -51,6 +51,8 @@ public:
 
   std::string get_pass() const;
 
+  bool add_word(const string& new_word);
+
 private:
 
   std::string login;
@@ -64,6 +66,8 @@ private:
   Score score_in_game;
 
   bool ready = true;//проверка готовности
+
+  vector<std::string> words;
 
   // Room* main_room = nullptr;
 };

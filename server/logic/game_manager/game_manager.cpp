@@ -30,17 +30,28 @@ Game_manager* Game_manager::get_instance()
 Player Game_manager::login(const string& login, const string& password)
 {
   User user_model;
-  return user_model.login(login, password);
+  Player buf = user_model.login(login, password);
+  if (Game_manager::get_instance()->is_login(buf.get_id()))
+    throw invalid_argument("Player already in game!!");
+  else
+  {
+    players.insert(std::make_pair(buf.get_id(), buf));
+    return buf;
+  } 
 }
 
-std::pair<int, std::string> Game_manager::create_room(const std::string& name, const Player& creator, const std::string& password)
+std::pair<int, std::string> Game_manager::create_room(const std::string& name, Player* creator, const std::string& password)
 {
   int id = Game_manager::get_instance()->count_rooms() + 1; 
   if (password == "-")
   {
     Word mod_word;
     Room new_room(name, id, creator, mod_word.get_word());
-    cout << new_room.get_word() << endl;
+    if (rooms.size() == 0) 
+    {
+      rooms.insert(std::make_pair(id, new_room));
+      return std::make_pair(id, new_room.get_word());
+    }
     if (std::find(rooms.begin(), rooms.end(), new_room) != rooms.end())
     {
       return std::make_pair(-1,"error");
@@ -53,8 +64,8 @@ std::pair<int, std::string> Game_manager::create_room(const std::string& name, c
   }
   else
   {
-    Word mod_word;
-    Room new_room(name, password, id, creator, mod_word.get_word());
+    Word word_model;
+    Room new_room(name, password, id, creator, word_model.get_word());
     if (std::find(rooms.begin(), rooms.end(), new_room) != rooms.end())
     {
       return std::make_pair(-1,"error");
@@ -65,6 +76,14 @@ std::pair<int, std::string> Game_manager::create_room(const std::string& name, c
       return std::make_pair(id, new_room.get_word());
     }
   }
+}
+
+Player Game_manager::register_player(const string& login, const string& password)
+{
+  User user_model;
+  Player new_one = user_model.sign_in(login, password);
+  this->login(new_one.get_login(), new_one.get_pass());
+  return new_one;
 }
 
 int Game_manager::add_player(const std::string& login, const std::string& password)
@@ -146,7 +165,7 @@ bool Game_manager::check_answer(const int& login_id, const int& room_id, const s
   if (is_login(login_id))
   {
     Word mod_word;
-    if (mod_word.check_word(word))
+    if (mod_word.check_word(word) && Game_manager::get_instance()->get_room(room_id)->get_player_id(login_id)->add_word(word))
     {
       Game_manager::get_instance()->get_room(room_id)->get_player_id(login_id)->refresh_score();
       return true;
@@ -217,5 +236,15 @@ std::string Game_manager::get_word()
 {
   Word mod_word;
   return mod_word.get_word();
+}
+
+void Game_manager::delete_player(const int& login_id)
+{
+  players.erase(login_id);
+}
+
+void Game_manager::delete_room(const int& room_id)
+{
+  rooms.erase(room_id);
 }
 

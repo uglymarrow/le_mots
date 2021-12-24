@@ -20,5 +20,4 @@ public:
 
 private:
     Connection_db* con;
-
 };

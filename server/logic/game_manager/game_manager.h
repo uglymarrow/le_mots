@@ -15,7 +15,7 @@ class Game_manager{
 
     std::map<int, class Room> view_all_rooms();
 
-    std::pair<int, std::string> create_room(const std::string& name, const Player& creator, const std::string& password = "-");
+    std::pair<int, std::string> create_room(const std::string& name, Player* creator, const std::string& password = "-");
 
     int add_player(const std::string& login, const std::string& password);//returns id
 
@@ -39,9 +39,15 @@ class Game_manager{
 
     Player login(const string& login, const string& password);
 
+    Player register_player(const string& login, const string& password);
+
     std::string get_word();
 
     bool check_answer(const int& login_id, const int& room_id, const std::string& word);
+
+    void delete_room(const int& room_id);
+
+    void delete_player(const int& login_id);
 
     // std::vector<Room_grebeshok> view_rooms_grebeshok(); //показать все комнаты в "игре гребешок"
 

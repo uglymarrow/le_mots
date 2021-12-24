@@ -11,17 +11,18 @@ Room& Room::operator=(const Room &s)
     return *this;
 } 
 
-std::pair<Player, Player> Room::get_players()
+std::pair<Player*, Player*> Room::get_players()
 {
     return std::make_pair(creator, opp);
 }
 
 Player* Room::get_player_id(const int& id)
 {
-    if (opp.get_id() == id)
-        return &opp;
-    else 
-        return &creator;
+    if (opp->get_id() == id)
+        return opp;
+    else {
+        return creator;
+    }
 }
 
 std::string Room::get_word()
@@ -34,16 +35,18 @@ void Room::change_word(const std::string& new_word)
     main_word = new_word;
 }
 
-std::string Room::add_player(const Player& new_one)
+std::string Room::add_player(Player* new_one)
 {
-    if (size == 0)
+    if (size == 1)
     {
         opp = new_one;
         size++;
         return main_word;
     }
     else    
-        return "error";
+    {
+    return "error";
+    }
 }
 
 bool Room::start_game()
@@ -75,11 +78,9 @@ bool Room::is_ready()
 
 std::string Room::get_winner()
 {
-    // cout << creator.get_score().current_score << endl;
-    // cout << opp.get_score().current_score << endl;
-    if (creator.get_score().current_score > opp.get_score().current_score)
-        return creator.get_login();
-    else if (creator.get_score().current_score < opp.get_score().current_score)
-        return opp.get_login();
+    if (creator->get_score().current_score > opp->get_score().current_score)
+        return creator->get_login();
+    else if (creator->get_score().current_score < opp->get_score().current_score)
+        return opp->get_login();
     else return "Победила дружба!";
 }

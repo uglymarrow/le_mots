@@ -44,12 +44,23 @@ Player& Player::operator=(const Player &s)
     id = s.id;
     ready = s.ready;
     score_in_game = s.score_in_game;
+    words = s.words;
     return *this;
 } 
 
 void Player::refresh_score()
 {
     score_in_game.current_score += 1;
+}
+
+bool Player::add_word(const string& new_word)
+{
+    if (find(words.begin(), words.end(), new_word) == words.end())
+    {
+        words.push_back(new_word);
+        return true;
+    }
+    else return false;
 }
 
 

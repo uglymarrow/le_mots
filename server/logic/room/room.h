@@ -10,19 +10,19 @@ private:
     std::string name_of_room;//название комнаты
     int room_id;//по id будем обращаться к определенной комнате 
     std::string password = "-";
-    Player creator;
-    int size = 0;
-    Player opp;
+    Player* creator;
+    int size = 1;
+    Player* opp;
     std::string winner;
     std::string main_word;
 public:
     Room(){};
 
-    Room(const std::string& name_, const int& id, const Player& first, const std::string& word) 
+    Room(const std::string& name_, const int& id, Player* first, const std::string& word) 
     : name_of_room(name_), room_id(id), creator(first), main_word(word)
     {};
 
-    Room(const std::string& name_, const std::string& pass, const int& id,  const Player& first, const std::string& word) 
+    Room(const std::string& name_, const std::string& pass, const int& id,  Player* first, const std::string& word) 
     : name_of_room(name_), room_id(id), password(pass),  creator(first), main_word(word)
     {};
 
@@ -41,15 +41,15 @@ public:
 
     // int is_exist();//существует ли комната, проверка на наличие уже такой комнаты на сервере
 
-    std::string add_player(const Player& new_one);//добавление игрока в комнату
+    std::string add_player(Player* new_one);//добавление игрока в комнату
 
     int number_of_players();//количество игроков в комнате
 
     void change_word(const std::string& new_word);
 
-    Player get_creator() {return creator;};
+    Player* get_creator() {return creator;};
 
-    std::pair<Player, Player> get_players();
+    std::pair<Player*, Player*> get_players();
 
     std::string get_name() const {return name_of_room;};
 
@@ -57,9 +57,7 @@ public:
 
     std::string get_winner();
 
-    void print_players();
-
-    std::string get_opp_nick();
+    Player* get_opp(){return opp;};
 
     Player* get_player_id(const int& id);
 

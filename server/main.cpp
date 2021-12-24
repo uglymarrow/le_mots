@@ -10,29 +10,80 @@ int main()
     static User mod_user;
     Game_manager::get_instance();
     std::string login, pass;
+    // try
+    // {
+    //     cout << Game_manager::get_instance()->login("kabachok", "123").get_login() << endl;
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     std::cerr << e.what() << '\n';
+    // }
+    // try
+    // {
+    //     cout << Game_manager::get_instance()->login("kabachok", "123").get_login() << endl;
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     std::cerr << e.what() << '\n';
+    // }
+    // try
+    // {
+    //     cout << Game_manager::get_instance()->register_player("test", "123").get_login();
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     std::cerr << e.what() << '\n';
+    // }
+    // for (auto i: Game_manager::get_instance()->view_all_players())
+    // {
+    //     cout << i.second.get_login() << endl;
+    // }
+    
+    
+    
+    
     // int id_login;
     // std::map<int, class Player>* play;
     // std::map<int, class Room>* room;
     Game_manager::get_instance()->add_player("kabachok", "123");
-    Game_manager::get_instance()->add_player("test_sign_in", "123");
+    Game_manager::get_instance()->add_player("new_kabachok", "123");
+    // Game_manager::get_instance()->add_player("test_sign_in", "123");
     std::pair<int, std::string> result = Game_manager::get_instance()->create_room("test_room", 
-                      *(Game_manager::get_instance()->get_player(16)));
+                      (Game_manager::get_instance()->get_player(3)));
 
-    cout << get<0>(result) << endl;
-    cout << get<1>(result) << endl;
-    cout << Game_manager::get_instance()->get_room(1)->is_ready() << endl;
+    // cout << get<0>(result) << endl;
+    // cout << get<1>(result) << endl;
+    // cout << Game_manager::get_instance()->get_room(1)->is_ready() << endl;
 
-    cout << Game_manager::get_instance()->get_room(1)->add_player(*Game_manager::get_instance()->get_player(3)) << endl;
 
-    cout << Game_manager::get_instance()->get_room(1)->get_word() << endl;
+    Game_manager::get_instance()->get_room(1)->add_player(Game_manager::get_instance()->get_player(2));
+
+    // cout << Game_manager::get_instance()->get_room(1)->get_creator()->get_login() << endl;
+    // cout << Game_manager::get_instance()->get_room(1)->get_opp()->get_login() << endl;
+
+    // cout << Game_manager::get_instance()->get_room(1)->get_word() << endl;
 
     Game_manager::get_instance()->get_room(1)->change_word("домовладелец");
 
-    cout << Game_manager::get_instance()->get_room(1)->get_word() << endl;
+    // for (auto i: Game_manager::get_instance()->view_all_rooms())
+    // {
+    //     cout << i.second.get_name() << endl;
+    // }
 
-    Game_manager::get_instance()->check_answer(3, 1, "дом");
-    Game_manager::get_instance()->check_answer(16, 1, "владелИц");
-    cout << "winner: "<<Game_manager::get_instance()->get_room(1)->get_winner() << endl;
+    // cout << "posle udaleniya" << endl;
+
+    // cout << Game_manager::get_instance()->get_room(1)->get_word() << endl;
+
+    cout << Game_manager::get_instance()->check_answer(2, 1, "дом") << endl;
+    cout << Game_manager::get_instance()->check_answer(2, 1, "дом") << endl;
+    cout << Game_manager::get_instance()->check_answer(3, 1, "дом") << endl;
+    cout << Game_manager::get_instance()->check_answer(3, 1, "дом") << endl;
+    // Game_manager::get_instance()->check_answer(3, 1, "дом");
+    cout << Game_manager::get_instance()->get_player(2)->get_score().current_score << endl;
+    // cout << Game_manager::get_instance()->get_player(3)->get_score().current_score << endl;
+    // Game_manager::get_instance()->check_answer(3, 1, "лом");
+    // Game_manager::get_instance()->check_answer(16, 1, "владелИц");
+    // cout << "winner: "<<Game_manager::get_instance()->get_room(1)->get_winner() << endl;
     // while(true)
     // {
     //   cin >> command;
