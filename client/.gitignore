@@ -1,0 +1,6 @@
+.idea
+.vscode
+build
+client_libO
+cmake-build-debug
+

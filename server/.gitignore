@@ -1,0 +1,8 @@
+.idea
+.vscode
+build
+databaseS
+cmake-build-debug
+logicS
+CMakeLists.txt.save
+server_libO
