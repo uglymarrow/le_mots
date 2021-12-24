@@ -1,0 +1,7 @@
+-I/usr/include
+-I/home/ksenia/cringe/client/client_lib/includes
+-I/home/ksenia/cringe/client/graphics_lib
+-I/home/ksenia/cringe/client/cmake-build-debug/graphics_lib
+-o
+/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_regform.cpp
+/home/ksenia/cringe/client/graphics_lib/include/regform.h

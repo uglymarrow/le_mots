@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Client"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\client_lib\;CMake Files\graphics_lib\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Widgets\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Gui\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_target">
+				<Option output="/home/ksenia/cringe/client/cmake-build-debug/client_target" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/home/ksenia/cringe/client/client_lib/includes"/>
+					<Add directory="/home/ksenia/cringe/client/graphics_lib/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtWidgets"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtGui"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 client_target"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_target/fast">
+				<Option output="/home/ksenia/cringe/client/cmake-build-debug/client_target" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/home/ksenia/cringe/client/client_lib/includes"/>
+					<Add directory="/home/ksenia/cringe/client/graphics_lib/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtWidgets"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtGui"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 client_target/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_lib">
+				<Option output="/home/ksenia/cringe/client/cmake-build-debug/client_lib/libclient_lib.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug/client_lib"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ksenia/cringe/client/client_lib/includes"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 client_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_lib/fast">
+				<Option output="/home/ksenia/cringe/client/cmake-build-debug/client_lib/libclient_lib.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug/client_lib"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ksenia/cringe/client/client_lib/includes"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 client_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/client_lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="graphics_lib">
+				<Option output="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/libgraphics_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib"/>
+					<Add directory="/home/ksenia/cringe/client/graphics_lib"/>
+					<Add directory="/home/ksenia/cringe/client/client_lib/includes"/>
+					<Add directory="/home/ksenia/cringe/client/graphics_lib/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtWidgets"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtGui"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 graphics_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="graphics_lib/fast">
+				<Option output="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/libgraphics_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib"/>
+					<Add directory="/home/ksenia/cringe/client/graphics_lib"/>
+					<Add directory="/home/ksenia/cringe/client/client_lib/includes"/>
+					<Add directory="/home/ksenia/cringe/client/graphics_lib/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtWidgets"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtGui"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 graphics_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ksenia/cringe/client/client_lib/src/client.cpp">
+			<Option target="client_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/client_lib/src/clientmanager.cpp">
+			<Option target="client_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/client_lib/src/command.cpp">
+			<Option target="client_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/client_lib/src/profile.cpp">
+			<Option target="client_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_loginform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_loginform.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_menuform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_menuform.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_player.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_player.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_playerpresenter.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_playerpresenter.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_regform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_regform.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_roomform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_roomform.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_waitingform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_waitingform.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_wordsform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/include/moc_wordsform.cpp.rule">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/ui_loginform.h">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/ui_menu.h">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/ui_regform.h">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/ui_roomform.h">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/ui_waitingform.h">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/ui_wordsform.h">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/forms/loginform.ui">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/forms/menu.ui">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/forms/regform.ui">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/forms/roomform.ui">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/forms/waitingform.ui">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/forms/wordsform.ui">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/loginform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/menuform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/player.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/playerpresenter.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/regform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/roomform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/waitinhgform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/src/wordsform.cpp">
+			<Option target="graphics_lib"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/main.cpp">
+			<Option target="client_target"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/client_lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\client_lib\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/graphics_lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\graphics_lib\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/ksenia/cringe/client/../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

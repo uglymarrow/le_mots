@@ -1,0 +1,85 @@
+/snap/clion/177/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ksenia/cringe/client
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+CMake Warning at /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1354 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:1477 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/177/bin/cmake/linux/share/cmake-3.21/Modules/FindBoost.cmake:2087 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:13 (find_package)
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ksenia/cringe/client/cmake-build-debug

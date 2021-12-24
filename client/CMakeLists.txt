@@ -2,7 +2,7 @@ project(Client CXX)
 
 cmake_minimum_required(VERSION 3.8)
 
-set(CMAKE_CXX_STANDARD 20)
+#set(CMAKE_CXX_STANDARD 20)
 
 # set(CMAKE_CXX_FLAGS "-Wall -Werror -Wpedantic")
 
@@ -20,14 +20,13 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 add_subdirectory(client_lib)
 include_directories(client_lib/includes)
 
-add_subdirectory(graphics)
-
-include_directories(graphics)
+add_subdirectory(graphics_lib)
+include_directories(graphics_lib/include)
 
 add_executable(client_target main.cpp)
 
 target_link_libraries(client_target
-                      graphics
+                      graphics_lib
                       client_lib
                       ${Boost_LIBRARIES}
                      )

@@ -1,0 +1,9 @@
+/home/ksenia/cringe/client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ksenia/cringe/client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ksenia/cringe/client/cmake-build-debug/CMakeFiles/client_target.dir
+/home/ksenia/cringe/client/cmake-build-debug/client_lib/CMakeFiles/rebuild_cache.dir
+/home/ksenia/cringe/client/cmake-build-debug/client_lib/CMakeFiles/edit_cache.dir
+/home/ksenia/cringe/client/cmake-build-debug/client_lib/CMakeFiles/client_lib.dir
+/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/CMakeFiles/rebuild_cache.dir
+/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/CMakeFiles/edit_cache.dir
+/home/ksenia/cringe/client/cmake-build-debug/graphics_lib/CMakeFiles/graphics_lib.dir
