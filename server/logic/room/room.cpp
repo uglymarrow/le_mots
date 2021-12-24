@@ -6,39 +6,47 @@ Room& Room::operator=(const Room &s)
     password = s.password;
     room_id = s.room_id;
     creator = s.creator;
-    for (auto i : s.players_in_room)
-    {  
-        players_in_room.insert(i);
-    }
+    opp = s.opp;
+    winner = s.winner;
     return *this;
 } 
 
-std::map<int, class Player> Room::get_players()
+std::pair<Player*, Player*> Room::get_players()
 {
-    std::map<int, class Player> result = players_in_room;
-    result.insert(std::make_pair(creator.get_id(), creator));
-    return result;
+    return std::make_pair(creator, opp);
 }
 
-void Room::view_players()
+Player* Room::get_player_id(const int& id)
 {
-    std::map<int, class Player> result = players_in_room;
-    result.insert(std::make_pair(creator.get_id(), creator));
-    for (auto i : result)
-    {
-        std::cout << i.second.get_login() << std::endl;
+    if (opp->get_id() == id)
+        return opp;
+    else {
+        return creator;
     }
 }
 
-bool Room::add_player(const Player& new_player)
+std::string Room::get_word()
 {
-    if (players_in_room.size() < 3)
+    return main_word;
+}
+
+void Room::change_word(const std::string& new_word)
+{
+    main_word = new_word;
+}
+
+std::string Room::add_player(Player* new_one)
+{
+    if (size == 1)
     {
-        players_in_room.insert(std::make_pair(new_player.get_id(), new_player));
-        return true;
+        opp = new_one;
+        size++;
+        return main_word;
     }
     else    
-        return false;
+    {
+    return "error";
+    }
 }
 
 bool Room::start_game()
@@ -61,20 +69,18 @@ bool Room::start_game()
     return true;
 }
 
-Player Room::get_winner()
+bool Room::is_ready()
 {
-    std::map<int, class Player> result = players_in_room;
-    result.insert(std::make_pair(creator.get_id(), creator));
-    Player winner = result.begin()->second;
-    int max_score = 0;
-    for (auto i : result)
-    {
-        if (i.second.get_score().current_score > max_score)
-        {
-            max_score = i.second.get_score().current_score;
-            winner = i.second;
-        }
-    }
-    return winner;
+    if (size == 1)
+        return true;
+    else return false;
+}
 
+std::string Room::get_winner()
+{
+    if (creator->get_score().current_score > opp->get_score().current_score)
+        return creator->get_login();
+    else if (creator->get_score().current_score < opp->get_score().current_score)
+        return opp->get_login();
+    else return "Победила дружба!";
 }

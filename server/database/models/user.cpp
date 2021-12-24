@@ -40,8 +40,8 @@ Player User::login(const std::string& login, const std::string& password)
     res = stmt->executeQuery("SELECT * FROM profiles WHERE (login = '" + login + "' and password = '" + this->secure_pass(password) + "')");
     if ((res->next())){
         Stat stat_login;
-        stat_login.games = res->getInt(4);
-        stat_login.win_game = res->getInt(5);
+        stat_login.games = res->getInt(3);
+        stat_login.win_game = res->getInt(4);
         stat_login.lose_game = stat_login.games - stat_login.win_game;
         Player to_login(
             login, password, res->getInt(1), stat_login
@@ -53,7 +53,7 @@ Player User::login(const std::string& login, const std::string& password)
     }
 }
 
-bool User::sign_in(const std::string& login, const std::string& password)
+Player User::sign_in(const std::string& login, const std::string& password)
 {
     if (!con->is_open()) {
         throw std::domain_error("Doesn`t connect to database") ;
@@ -75,16 +75,20 @@ bool User::sign_in(const std::string& login, const std::string& password)
     int current_id = res->getInt(1);
     //добавление пользователя в базу данных 
     try{
-        pstmt = con->get_connection()->prepareStatement("insert into profiles(id, nickname, login, games, wins, password) values (?, ?, ?, ?, ?, ?)");
+        pstmt = con->get_connection()->prepareStatement("insert into profiles(id, login, games, wins, password) values ( ?, ?, ?, ?, ?)");
         pstmt->setInt(1, current_id+1);
         pstmt->setString(2, login);
         pstmt->setInt(3, 0);
         pstmt->setInt(4, 0);
         pstmt->setString(5, this->secure_pass(password));
         pstmt->executeUpdate();
-        return true;
+        Stat stat_login;
+        Player new_one(
+            login, password, current_id+1, stat_login
+        );
+        return new_one;
     } catch (sql::SQLException &e) {
-        return false;
+        throw invalid_argument(e.what());
     }
 }
 
@@ -185,5 +189,4 @@ User::User()
 User::~User()
 {
     // con->close();
-    std::cout << "user destroyed";
 }

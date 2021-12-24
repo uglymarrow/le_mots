@@ -10,21 +10,24 @@ private:
     std::string name_of_room;//название комнаты
     int room_id;//по id будем обращаться к определенной комнате 
     std::string password = "-";
-    Player creator;
-    std::map<int, class Player> players_in_room;
+    Player* creator;
+    int size = 1;
+    Player* opp;
+    std::string winner;
+    std::string main_word;
 public:
     Room(){};
 
-    Room(const std::string& name_, const int& id, const Player& first) 
-    : name_of_room(name_), room_id(id), creator(first)
+    Room(const std::string& name_, const int& id, Player* first, const std::string& word) 
+    : name_of_room(name_), room_id(id), creator(first), main_word(word)
     {};
 
-    Room(const std::string& name_, const std::string& pass, const int& id,  const Player& first) 
-    : name_of_room(name_), room_id(id), password(pass),  creator(first)
+    Room(const std::string& name_, const std::string& pass, const int& id,  Player* first, const std::string& word) 
+    : name_of_room(name_), room_id(id), password(pass),  creator(first), main_word(word)
     {};
 
     Room(const Room &s):name_of_room(s.name_of_room), room_id(s.room_id), password(s.password),
-    creator(s.creator), players_in_room(s.players_in_room){};
+    creator(s.creator), opp(s.opp), winner(s.winner), main_word(s.main_word){};
 
     Room& operator=(const Room &s); 
 
@@ -36,22 +39,30 @@ public:
 
     int end_game();//по окончанию таймера запускается данный метод, который отсылает клиенту сигнал о завершении
 
-    int is_exist();//существует ли комната, проверка на наличие уже такой комнаты на сервере
+    // int is_exist();//существует ли комната, проверка на наличие уже такой комнаты на сервере
 
-    bool add_player(const Player& new_player);//добавление игрока в комнату
+    std::string add_player(Player* new_one);//добавление игрока в комнату
 
     int number_of_players();//количество игроков в комнате
 
-    Player get_creator(){return creator;};
+    void change_word(const std::string& new_word);
 
-    std::map<int, class Player> get_players();
+    Player* get_creator() {return creator;};
+
+    std::pair<Player*, Player*> get_players();
 
     std::string get_name() const {return name_of_room;};
 
     int get_id() const {return room_id;};
 
-    void view_players();
+    std::string get_winner();
 
-    Player get_winner();
+    Player* get_opp(){return opp;};
+
+    Player* get_player_id(const int& id);
+
+    bool is_ready();
+
+    std::string get_word();
 };
 

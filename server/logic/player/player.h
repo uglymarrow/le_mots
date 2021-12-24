@@ -39,7 +39,7 @@ public:
 
   bool is_ready() const;//проверка готовности пользователя
 
-  void refresh_score(const Score& score);
+  void refresh_score();
 
   void get_ready();
 
@@ -50,6 +50,8 @@ public:
   std::string get_login() const;
 
   std::string get_pass() const;
+
+  bool add_word(const string& new_word);
 
 private:
 
@@ -64,6 +66,8 @@ private:
   Score score_in_game;
 
   bool ready = true;//проверка готовности
+
+  vector<std::string> words;
 
   // Room* main_room = nullptr;
 };

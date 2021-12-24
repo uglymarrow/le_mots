@@ -14,13 +14,13 @@ class User{
 
     Player login(const std::string& login, const std::string& password);
     
-    bool sign_in(const std::string& login, const std::string& password);
+    Player sign_in(const std::string& login, const std::string& password);
 
     bool update_login(const std::string& login, const std::string& data);
     bool update_password(const std::string& login, const std::string& data);
     bool update_stat(const std::string& login, const int& games, const int& wins);
     
-    bool update_field(const std::string& login, const std::string &field_name, const std::string& data); 
+    bool update_field(const std::string& login, const std::string& field_name, const std::string& data); 
 
     bool is_exist(const std::string& login);
 
