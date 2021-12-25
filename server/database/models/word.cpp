@@ -129,6 +129,7 @@ Word::Word()
 {
     con = Connection_db::get_instance();
     con->connect("tcp://127.0.0.1:3306", "login1", "kFBrpvet");
+    // con->connect("tcp://127.0.0.1:3306", "ks", "123");
 }
 
 Word::~Word()

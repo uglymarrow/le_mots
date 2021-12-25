@@ -1,14 +1,15 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "../player/player.h"
+#include "player.h"
+#include "user.h"
 #include <map>
 using namespace std;
 
 class Room{
 private:
     std::string name_of_room;//название комнаты
-    int room_id;//по id будем обращаться к определенной комнате 
+    int room_id;//по id будем обращаться к определенной комнате
     std::string password = "-";
     Player* creator;
     int size = 1;
@@ -64,5 +65,7 @@ public:
     bool is_ready();
 
     std::string get_word();
+
+    bool to_delete();
 };
 

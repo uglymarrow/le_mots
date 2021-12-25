@@ -184,6 +184,7 @@ User::User()
 {
     con = Connection_db::get_instance();
     con->connect("tcp://127.0.0.1:3306", "login", "kFBrpvet");
+    // con->connect("tcp://127.0.0.1:3306", "ks", "123");
 }
 
 User::~User()

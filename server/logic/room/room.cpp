@@ -78,9 +78,32 @@ bool Room::is_ready()
 
 std::string Room::get_winner()
 {
+    User mod_user;
+    
     if (creator->get_score().current_score > opp->get_score().current_score)
+    {
+        mod_user.update_stat(creator->get_login(),creator->get_stat().games+1, creator->get_stat().win_game+1);
+        size--;
         return creator->get_login();
+    }
     else if (creator->get_score().current_score < opp->get_score().current_score)
+    {
+        mod_user.update_stat(opp->get_login(),opp->get_stat().games+1, opp->get_stat().win_game+1);
+        size--;
         return opp->get_login();
-    else return "Победила дружба!";
+    }
+    else
+    { 
+        mod_user.update_stat(opp->get_login(),opp->get_stat().games+1, opp->get_stat().win_game);
+        size--;
+        mod_user.update_stat(creator->get_login(),creator->get_stat().games+1, creator->get_stat().win_game);
+        return "Победила дружба!";
+    }
+}
+
+bool Room::to_delete()
+{
+    if (size == 0)
+        return true;
+    else return false;
 }

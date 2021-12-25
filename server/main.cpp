@@ -74,12 +74,16 @@ int main()
 
     // cout << Game_manager::get_instance()->get_room(1)->get_word() << endl;
 
-    cout << Game_manager::get_instance()->check_answer(2, 1, "дом") << endl;
-    cout << Game_manager::get_instance()->check_answer(2, 1, "дом") << endl;
-    cout << Game_manager::get_instance()->check_answer(3, 1, "дом") << endl;
-    cout << Game_manager::get_instance()->check_answer(3, 1, "дом") << endl;
+    // cout << Game_manager::get_instance()->check_answer(2, 1, "дом") << endl;
+    // cout << Game_manager::get_instance()->check_answer(2, 1, "дом") << endl;
+    // cout << Game_manager::get_instance()->check_answer(3, 1, "дом") << endl;
+    // cout << Game_manager::get_instance()->check_answer(3, 1, "дом") << endl;
     // Game_manager::get_instance()->check_answer(3, 1, "дом");
-    cout << Game_manager::get_instance()->get_player(2)->get_score().current_score << endl;
+    // cout << Game_manager::get_instance()->get_player(2)->get_score().current_score << endl;
+    cout << "winner: "<<Game_manager::get_instance()->get_room(1)->get_winner() << endl;
+    cout <<Game_manager::get_instance()->get_room(1)->to_delete() << endl;
+    cout << "winner: "<<Game_manager::get_instance()->get_room(1)->get_winner() << endl;
+    cout <<Game_manager::get_instance()->get_room(1)->to_delete() << endl;
     // cout << Game_manager::get_instance()->get_player(3)->get_score().current_score << endl;
     // Game_manager::get_instance()->check_answer(3, 1, "лом");
     // Game_manager::get_instance()->check_answer(16, 1, "владелИц");

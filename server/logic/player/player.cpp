@@ -2,18 +2,18 @@
 
 Stat Player::get_stat() const
 {
-    return this->player_stat;
+    return player_stat;
 }
 
 
 bool Player::is_ready() const
 {
-    return this->ready;
+    return ready;
 }
 
 void Player::get_ready()
 {
-    this->ready = true;
+    ready = true;
 }
 
 std::string Player::get_login() const
