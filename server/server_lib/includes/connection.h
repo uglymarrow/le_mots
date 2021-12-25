@@ -15,6 +15,7 @@ using boost::asio::ip::tcp;
 class Connection {
 public:
     Connection(boost::asio::io_context& io_context);
+    ~Connection();
 
     tcp::socket& socket();
 

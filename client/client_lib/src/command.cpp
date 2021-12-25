@@ -58,7 +58,7 @@ Profile Command::reg(const std::string& user, const std::string& password) {
     return Profile(value_to<std::string>(data.at("info").at("user")));
 }
 
-std::pair<int, std::string> Command::all_rooms() {
+std::map<int, std::string> Command::all_rooms() {
     value jv = {
         { "type", "rooms" }
     };
@@ -67,9 +67,25 @@ std::pair<int, std::string> Command::all_rooms() {
 
     object const& data = safly_read(json);
 
-    std::pair<int, std::string> pa(value_to<int>(data.at("info").at("id")), value_to<std::string>(data.at("info").at("name")));
+    std::string s = value_to<int>(data.at("info").at("rooms"));
+    std::string delimiter = ",";
 
-    return pa;
+    size_t pos = 0;
+    int id;
+    std::map<int, std::string> map;
+
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        id = std::stoi(s.substr(0, pos));
+        s.erase(0, pos + delimiter.length());
+
+        if ((pos = s.find(delimiter)) == std::string::npos)
+            break;
+
+        map.insert(std::make_pair(id, s.substr(0, pos)));
+        s.erase(0, pos + delimiter.length());
+    }
+
+    return map;
 }
 
 std::string Command::create_room(std::string &name) {
@@ -87,6 +103,23 @@ std::string Command::create_room(std::string &name) {
     object const& data = safly_read(json);
 
     return value_to<std::string>(data.at("info").at("word"));
+}
+
+Stats Command::get_stats() {
+    value jv = {
+        { "type", "stats" }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    object const& data = safly_read(json);
+
+    Stats stats();
+    stats.win_game = value_to<int>(data.at("info").at("wins"));
+    stats.lose_game = value_to<int>(data.at("info").at("loses"));
+    stats.games = value_to<int>(data.at("info").at("games"));
+
+    return stats;
 }
 
 int Command::is_ready() {

@@ -11,6 +11,12 @@
 
 using namespace boost::json;
 
+struct Stats {
+    int win_game = 0;//для статистики пользователя
+    int lose_game = 0;//для статистики пользователя
+    int games = 0;//для статистики пользователя
+};
+
 class Command {
 public:
     Command(boost::asio::io_context &io_context);
@@ -18,11 +24,12 @@ public:
     Profile login(const std::string& user, const std::string& password);
     Profile reg(const std::string& user, const std::string& password);
 
-    std::pair<int, std::string> all_rooms();
+    std::map<int, std::string> all_rooms();
     std::string create_room(std::string &name);
     std::string join_room(int);
     int is_ready();
     std::string get_winner();
+    Stats get_stats();
     int check_word(std::string &str);
 private:
     object const safly_read(std::string& json);
