@@ -2,19 +2,21 @@
 #define PLAYERPRESENTER_H
 
 #include <QObject>
-//#include <QWidget>
-//#include <QTimer>
-//#include <QTime>
+#include <QWidget>
+#include <QTimer>
+#include <QTime>
 #include <string>
 #include <map>
-#include "../include/player.h"
-#include "../include/wordsform.h"
-#include "../include/menuform.h"
-#include "../include/regform.h"
-#include "../include/loginform.h"
-#include "../include/roomform.h"
+#include <thread>
+#include <iostream>
+#include "player.h"
+#include "wordsform.h"
+#include "menuform.h"
+#include "regform.h"
+#include "loginform.h"
+#include "roomform.h"
 #include "../../client_lib/includes/command.h"
-#include "../include/waitingform.h"
+#include "waitingform.h"
 //#include "../include/profile.h"
 
 // #include <boost/bind/bind.hpp>
@@ -39,16 +41,18 @@ class PlayerPresenter : public QObject {
   void connectRegForm(RegForm *reg_form);
   void connectWordsForm(WordsForm *words_form);
   void connectRoomForm(RoomForm *room_form);
-  void connectToRoom();
+
 
   Player *m_model;
 
  signals:
   void showErrorMes();
   void closeLogForm();
+  void closeRegForm();
   void setWinner(std::string result);
   void successAdd();
   void failAdd();
+  void closeWordsWindow();
 
  private slots:
   void processLoginChanged(std::string login);
@@ -62,6 +66,13 @@ class PlayerPresenter : public QObject {
   void processConnect(int _id);
   void processEndOfGame();
   void checkWord(std::string data);
+  void connectToRoom();
+  void processShowMyRoom(std::string game_word);
+  void processShowAfterReg();
+
+ private:
+//  WaitingForm *words_f;
+QThread *thread;
 };
 
 #endif // PLAYERPRESENTER_H

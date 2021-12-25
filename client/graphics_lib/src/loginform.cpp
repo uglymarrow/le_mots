@@ -1,5 +1,5 @@
 #include <QDebug>
-#include "../include/loginform.h"
+#include "loginform.h"
 #include "ui_loginform.h"
 
 /*!
@@ -36,6 +36,7 @@ void LoginForm::on_logEdit_textChanged(const QString &text) {
 }
 
 void LoginForm::on_pasEdit_textChanged(const QString &text) {
+  ui->errLabel->hide();
   std::string buffer = text.toUtf8().constData();
   emit passwordChanged(buffer);
 }

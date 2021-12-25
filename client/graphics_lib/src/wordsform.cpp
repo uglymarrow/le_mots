@@ -5,6 +5,8 @@ WordsForm::WordsForm(int id, QWidget *parent) : QWidget(parent), ui(new Ui::Word
   ui->setupUi(this);
   this->setWindowTitle("Le mots");
   ui->listWidget->addItem(QString::number(id));
+  ui->waitingLabel->hide();
+  ui->waitnigHeader->hide();
 
   connect(ui->listWidget, &QListWidget::itemClicked, this, &WordsForm::listItemClicked);
 }
@@ -32,6 +34,8 @@ void WordsForm::listItemClicked(QListWidgetItem *item) {
 }
 
 void WordsForm::on_createRoomButton_clicked() {
-  this->close();
+  ui->waitingLabel->show();
+  ui->waitnigHeader->show();
+//  this->close();
   emit showRoomWindow();
 }

@@ -9,9 +9,7 @@ namespace Ui {
 class LoginForm;
 }
 
-class LoginForm : public QWidget
-//    , public IWiringView
-{
+class LoginForm : public QWidget {
  Q_OBJECT
 
  public:
@@ -30,7 +28,7 @@ class LoginForm : public QWidget
   // PlayerPresenter *presenter = new PlayerPresenter();
 
   void loginChanged(std::string login);
-  void passwordChanged(std::string login);
+  void passwordChanged(std::string pass);
  public slots:
   void showErrReg();
 

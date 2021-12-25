@@ -1,4 +1,5 @@
-#include "../include/playerpresenter.h"
+#include "playerpresenter.h"
+#include <QThread>
 
 /*!
     \class PlayerPresenter
@@ -14,14 +15,12 @@ PlayerPresenter::PlayerPresenter(boost::asio::io_context &io_con, QObject *paren
 void PlayerPresenter::processLoginChanged(std::string text) {
   if (text != m_model->login()) {
     m_model->setLogin(text);
-//    refreshView();
   }
 }
 
 void PlayerPresenter::processPasswordChanged(std::string text) {
   if (text != m_model->password()) {
     m_model->setPassword(text);
-//    refreshView();
   }
 }
 
@@ -31,19 +30,15 @@ void PlayerPresenter::processShowMenu() {
     // boost::asio::io_context io_con;
     // cl(io_con);
     // cl.connect(std::string("127.0.0.1"), std::string("8000"));
-
     // boost::asio::io_context io_con;
     // Command cl(io_con);
+
     cl.login(m_model->login(), m_model->password());
-    // m_viewList.at(0)->hideWindow();
 
     MenuForm *menu_f = new MenuForm(m_model->login(), m_model->stat());
     connectMenuForm(menu_f);
     menu_f->show();
     emit closeLogForm();
-
-//     m_viewList.at(1)->showWindow();
-//        refreshView();
   } catch (std::exception &e) {
     emit showErrorMes();
     std::cout << "Exception: " << e.what() << "\n";
@@ -52,7 +47,7 @@ void PlayerPresenter::processShowMenu() {
 
 void PlayerPresenter::processShowMenuAgain() {
   MenuForm *menu_f = new MenuForm(m_model->login(), m_model->stat());
-  connectMenuForm(menu_f);
+//  connectMenuForm(menu_f);
   menu_f->show();
 }
 
@@ -66,7 +61,6 @@ void PlayerPresenter::processShowReg() {
   RegForm *reg_f = new RegForm();
   connectRegForm(reg_f);
   reg_f->show();
-//  refreshView();
 }
 
 void PlayerPresenter::processShowWords() {
@@ -79,26 +73,51 @@ void PlayerPresenter::processShowWords() {
 
 //создание комнаты
 void PlayerPresenter::processShowRoom() {
-  WaitingForm *waiting_f = new WaitingForm();
-  waiting_f->show();
-  connectToRoom();
+  thread = new QThread;
+  connect(thread, SIGNAL(started()), this, SLOT(connectToRoom()));
+  connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+  thread->start();
 }
 
-void connectToRoom(std::string data) {
-  std::string buffer = m_model->login();
+void PlayerPresenter::processShowMyRoom(std::string game_word) {
+  emit closeWordsWindow();
+  RoomForm *room = new RoomForm(game_word);
+  connectRoomForm(room);
+  room->show();
+}
 
-  try {
-    std::string first_word = cl.create_room(data);
-    //// attention
-    while (cl.is_ready() == 0) {
-      sleep(5);
-    };
-    RoomForm *room = new RoomForm(first_word);
-    connectRoomForm(room);
-    room->show();
-  } catch (std::exception &e) {
-    std::cout << "Exception: " << e.what() << "\n";
-  }
+void PlayerPresenter::connectToRoom() {
+  std::string buffer = m_model->login();
+//  try {
+    std::string game_word = cl.create_room(buffer);
+    //// attention!!!!!!!!!!!!!!!!!!!
+//  for (;;) {
+//    std::cout << "he " << std::endl;
+//  while (cl.is_ready() == 0) {
+//    sleep(5);
+//  }
+    sleep(10);
+  thread->quit();
+  emit processShowMyRoom(game_word);
+//  } catch (std::exception &e) {
+//    std::cout << "Exception: " << e.what() << "\n";
+//  }
+
+
+//  std::string buffer = m_model->login();
+//
+//  try {
+//    std::string first_word = cl.create_room(buffer);
+//    //// attention
+//    while (cl.is_ready() == 1) {
+//      sleep(5);
+//    };
+//    RoomForm *room = new RoomForm(first_word);
+//    connectRoomForm(room);
+//    room->show();
+//  } catch (std::exception &e) {
+//    std::cout << "Exception: " << e.what() << "\n";
+//  }
 }
 
 void PlayerPresenter::processConnect(int _id) {
@@ -114,10 +133,31 @@ void PlayerPresenter::processEndOfGame() {
 
 void PlayerPresenter::checkWord(std::string data) {
   if (cl.check_word(data))
-      emit successAdd();
+    emit successAdd();
   else
-      emit failAdd();
+    emit failAdd();
 }
+
+void PlayerPresenter::processShowAfterReg() {
+  try {
+    // boost::asio::io_context io_con;
+    // cl(io_con);
+    // cl.connect(std::string("127.0.0.1"), std::string("8000"));
+    // boost::asio::io_context io_con;
+    // Command cl(io_con);
+
+    cl.reg(m_model->login(), m_model->password());
+
+    MenuForm *menu_f = new MenuForm(m_model->login(), m_model->stat());
+    connectMenuForm(menu_f);
+    menu_f->show();
+    emit closeRegForm();
+  } catch (std::exception &e) {
+    emit showErrorMes();
+    std::cout << "Exception: " << e.what() << "\n";
+  }
+}
+
 
 void PlayerPresenter::connectLogForm(LoginForm *log_form) {
   QObject *view_obj = dynamic_cast<QObject *>(log_form);
@@ -143,6 +183,13 @@ void PlayerPresenter::connectMenuForm(MenuForm *menu_form) {
 void PlayerPresenter::connectRegForm(RegForm *reg_form) {
   QObject *view_obj = dynamic_cast<QObject *>(reg_form);
   QObject::connect(view_obj, SIGNAL(showAuthWindow()), this, SLOT(processShowAuth()));
+  QObject::connect(view_obj, SIGNAL(showAfterReg()), this, SLOT(processShowAfterReg()));
+  QObject::connect(this, SIGNAL(closeRegForm()), view_obj, SLOT(close()));
+  QObject::connect(view_obj, SIGNAL(loginChanged(std::string)),
+                   this, SLOT(processLoginChanged(std::string)));
+
+  QObject::connect(view_obj, SIGNAL(passwordChanged(std::string)),
+                   this, SLOT(processPasswordChanged(std::string)));
 }
 
 void PlayerPresenter::connectWordsForm(WordsForm *words_form) {
@@ -150,6 +197,7 @@ void PlayerPresenter::connectWordsForm(WordsForm *words_form) {
   QObject::connect(view_obj, SIGNAL(showRoomWindow()), this, SLOT(processShowRoom()));
   QObject::connect(view_obj, SIGNAL(showMenuAgain()), this, SLOT(processShowMenuAgain()));
   QObject::connect(view_obj, SIGNAL(connectToRoom(int)), this, SLOT(processConnect(int)));
+  QObject::connect(this, SIGNAL(closeWordsWindow()), view_obj, SLOT(close()));
 }
 
 void PlayerPresenter::connectRoomForm(RoomForm *room_form) {

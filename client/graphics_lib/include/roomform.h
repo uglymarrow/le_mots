@@ -5,8 +5,6 @@
 #include <string>
 #include <QTimer>
 #include <QTime>
-//#include "../build/graphics/ui_roomform.h"
-//#include "iwiringview.h"
 
 namespace Ui {
 class RoomForm;
@@ -43,6 +41,8 @@ class RoomForm : public QWidget
  private slots:
   void on_exitButton_clicked();
   void on_pushButton_clicked();
+  void on_returnButton_clicked();
+  void on_lineEdit_textChanged();
 
   void slotTimerAlarm();
 
