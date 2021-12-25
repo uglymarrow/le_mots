@@ -67,7 +67,7 @@ std::map<int, std::string> Command::all_rooms() {
 
     object const& data = safly_read(json);
 
-    std::string s = value_to<int>(data.at("info").at("rooms"));
+    std::string s = value_to<std::string>(data.at("info").at("rooms"));
     std::string delimiter = ",";
 
     size_t pos = 0;
@@ -114,7 +114,7 @@ Stats Command::get_stats() {
 
     object const& data = safly_read(json);
 
-    Stats stats();
+    Stats stats;
     stats.win_game = value_to<int>(data.at("info").at("wins"));
     stats.lose_game = value_to<int>(data.at("info").at("loses"));
     stats.games = value_to<int>(data.at("info").at("games"));

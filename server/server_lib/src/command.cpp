@@ -9,14 +9,16 @@
 
 using namespace boost::json;
 
+Command::~Command() {
+    Game_manager::get_instance()->delete_player(user.get_id());
+}
+
 bool Command::login(std::string json, std::string& buf) {
     value jv;
 
     try {
         object const& data = safly_read(json);
 
-        
-    
         try {
             if (value_to<std::string>(data.at("type")) == "login")
                 user = Game_manager::get_instance()->login(boost::json::value_to<std::string>(data.at("info").at("user")), boost::json::value_to<std::string>(data.at("info").at("password")));
@@ -85,10 +87,10 @@ void Command::all_rooms(object const& data, std::string& buf) {
     int count = 0;
 
     for (auto &kv : rooms) {
-        if (kv.second().get_name() == "") {
+        if (kv.second.get_name() == "") {
             count++;
             act_rooms += to_string(kv.first) + ",";
-            act_rooms += kv.second().get_name() + ",";
+            act_rooms += kv.second.get_name() + ",";
         }
     }
     
@@ -135,7 +137,7 @@ void Command::get_winner(object const& data, std::string& buf) {
     };
 
     if (Game_manager::get_instance()->get_room(room_id)->to_delete())
-        Game_manager::get_instance()->delete_room(Game_manager::get_instance()->get_room(room_id));
+        Game_manager::get_instance()->delete_room(room_id);
 
     buf = serialize(jv);
 }

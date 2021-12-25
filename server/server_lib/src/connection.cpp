@@ -13,7 +13,7 @@ using boost::asio::ip::tcp;
 Connection::Connection(boost::asio::io_context& io_context): contr(), socket_(io_context) {}
 
 Connection::~Connection(){
-    std::cout << Player.get_login() << " вышел с сервера" << std::endl;
+    
 }
 
 tcp::socket& Connection::socket() {

@@ -18,6 +18,7 @@ using namespace boost::json;
 class Command {
 public:
     Command();
+    ~Command();
 
     bool login(std::string json, std::string& buf);
 
