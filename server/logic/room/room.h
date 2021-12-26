@@ -67,5 +67,9 @@ public:
     std::string get_word();
 
     bool to_delete();
+
+    void delete_player(const int& id);
+
+    int get_score_opp(const int& id)
 };
 

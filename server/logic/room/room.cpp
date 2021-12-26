@@ -49,24 +49,26 @@ std::string Room::add_player(Player* new_one)
     }
 }
 
-bool Room::start_game()
+int Room::get_score_opp(const int& id)
 {
-    // int count_ready = 0;
-    // std::map<int, class Player> result = players_in_room;
-    // result.insert(std::make_pair(creator.get_id(), creator));
-    // for (auto i : result)
-    // {
-    //     if (i.second.is_ready() == true)
-    //     count_ready++;
-    // }
-    // std::cout << count_ready << " " << result.size();
-    // if (count_ready == result.size())
-    // {
-    //     return true;
-    // }
-    // else    
-    //     return false;
-    return true;
+    if (opp->get_id() == id)
+        return creator->get_score().current_score;
+    else if (creator->get_id() == id)
+        return opp->get_score().current_score;
+}
+
+void Room::delete_player(const int& id)
+{
+    if (opp->get_id() == id)
+    {
+        opp = nullptr;
+        size--;
+    }
+    else if (creator->get_id() == id)
+    {
+        creator = nullptr;
+        size--;
+    }
 }
 
 bool Room::is_ready()
