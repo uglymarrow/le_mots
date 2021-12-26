@@ -31,6 +31,7 @@ public:
     std::string join_room(int);
     int is_ready();
     int random_room();
+    void leave_room();
     std::string get_winner();
     Stats get_stats();
     int check_word(std::string &str);

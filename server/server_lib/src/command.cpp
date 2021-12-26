@@ -69,6 +69,8 @@ void Command::controller(std::string json, std::string& buf) {
             get_winner(data, buf);
         } else if(value_to<std::string>(data.at("type")) == "stats") {
             get_stats(data, buf);
+        } else if(value_to<std::string>(data.at("type")) == "leave_room") {
+            leave_room(data, buf);
         } else {
             create_room(data, buf);
         }
@@ -135,6 +137,19 @@ void Command::get_winner(object const& data, std::string& buf) {
         { "info", {
             { "user", Game_manager::get_instance()->get_room(room_id)->get_winner() }
         } }
+    };
+
+    if (Game_manager::get_instance()->get_room(room_id)->to_delete())
+        Game_manager::get_instance()->delete_room(room_id);
+
+    buf = serialize(jv);
+}
+
+void Command::leave_room(object const& data, std::string& buf) {
+    Game_manager::get_instance()->get_room(room_id)->delete_player(user.get_id());
+
+    value jv = {
+        { "type", 1 }
     };
 
     if (Game_manager::get_instance()->get_room(room_id)->to_delete())

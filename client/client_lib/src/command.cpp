@@ -88,7 +88,7 @@ std::map<int, std::string> Command::all_rooms() {
     return map;
 }
 
-int random_room(){
+int Command::random_room(){
     value jv = {
         { "type", "rooms" }
     };
@@ -117,6 +117,16 @@ int random_room(){
     srand(static_cast<unsigned int>(time(0)));
 
     return arr[rand() % value_to<int>(data.at("info").at("count"))];
+}
+
+void Command::leave_room(){
+    value jv = {
+        { "type", "leave_room" }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    object const& data = safly_read(json);
 }
 
 std::pair<int, std::string> Command::create_room(std::string &name) {
