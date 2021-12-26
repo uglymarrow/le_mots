@@ -88,7 +88,7 @@ std::map<int, std::string> Command::all_rooms() {
     return map;
 }
 
-std::string Command::create_room(std::string &name) {
+std::pair<int, std::string> Command::create_room(std::string &name) {
     value jv = {
         { "type", "create_room" },
         { "info", {
@@ -102,7 +102,7 @@ std::string Command::create_room(std::string &name) {
 
     object const& data = safly_read(json);
 
-    return value_to<std::string>(data.at("info").at("word"));
+    return std::make_pair(value_to<int>(data.at("info").at("id"), value_to<std::string>(data.at("info").at("word")));
 }
 
 Stats Command::get_stats() {

@@ -25,7 +25,7 @@ public:
     Profile reg(const std::string& user, const std::string& password);
 
     std::map<int, std::string> all_rooms();
-    std::string create_room(std::string &name);
+    std::pair<int, std::string> create_room(std::string &name);
     std::string join_room(int);
     int is_ready();
     std::string get_winner();

@@ -87,7 +87,7 @@ void Command::all_rooms(object const& data, std::string& buf) {
     int count = 0;
 
     for (auto &kv : rooms) {
-        if (kv.second.get_name() == "") {
+        if (kv.second.is_ready()) {
             count++;
             act_rooms += to_string(kv.first) + ",";
             act_rooms += kv.second.get_name() + ",";
@@ -115,7 +115,8 @@ void Command::create_room(object const& data, std::string& buf) {
     value jv = {
         { "type", 1 },
         { "info", {
-            { "word", std::get<1>(rez) }
+            { "word", std::get<1>(rez) },
+            { "id", room_id }
         } }
     };
     buf = serialize(jv);
