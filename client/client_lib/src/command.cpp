@@ -88,6 +88,37 @@ std::map<int, std::string> Command::all_rooms() {
     return map;
 }
 
+int random_room(){
+    value jv = {
+        { "type", "rooms" }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    object const& data = safly_read(json);
+
+    std::string s = value_to<std::string>(data.at("info").at("rooms"));
+    std::string delimiter = ",";
+
+    size_t pos = 0;
+    int id;
+    std::vector<int> arr;
+
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        arr.push_back(std::stoi(s.substr(0, pos)));
+        s.erase(0, pos + delimiter.length());
+
+        if ((pos = s.find(delimiter)) == std::string::npos)
+            break;
+
+        s.erase(0, pos + delimiter.length());
+    }
+
+    srand(static_cast<unsigned int>(time(0)));
+
+    return arr[rand() % value_to<int>(data.at("info").at("count"))];
+}
+
 std::pair<int, std::string> Command::create_room(std::string &name) {
     value jv = {
         { "type", "create_room" },
@@ -102,7 +133,7 @@ std::pair<int, std::string> Command::create_room(std::string &name) {
 
     object const& data = safly_read(json);
 
-    return std::make_pair(value_to<int>(data.at("info").at("id"), value_to<std::string>(data.at("info").at("word")));
+    return std::make_pair(value_to<int>(data.at("info").at("id")), value_to<std::string>(data.at("info").at("word")));
 }
 
 Stats Command::get_stats() {

@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <vector>
+#include <ctime>
 #include <boost/json.hpp>
 
 #include "profile.h"
@@ -28,6 +30,7 @@ public:
     std::pair<int, std::string> create_room(std::string &name);
     std::string join_room(int);
     int is_ready();
+    int random_room();
     std::string get_winner();
     Stats get_stats();
     int check_word(std::string &str);
