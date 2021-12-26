@@ -129,6 +129,18 @@ void Command::leave_room(){
     object const& data = safly_read(json);
 }
 
+int Command::get_score(){
+    value jv = {
+        { "type", "get_score" }
+    };
+
+    std::string json = client.send(std::string(serialize(jv)));
+
+    object const& data = safly_read(json);
+
+    return value_to<int>(data.at("info").at("score"));
+}
+
 std::pair<int, std::string> Command::create_room(std::string &name) {
     value jv = {
         { "type", "create_room" },

@@ -30,6 +30,7 @@ public:
     std::pair<int, std::string> create_room(std::string &name);
     std::string join_room(int);
     int is_ready();
+    int get_score();
     int random_room();
     void leave_room();
     std::string get_winner();
